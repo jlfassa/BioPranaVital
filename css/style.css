@@ -1,23 +1,18 @@
 :root {
 
-    --bg: #eee9df;
-    --bg-light: #f5f2eb;
-    --bg-dark: #20251f;
+    --bg: #14130f;
+    --bg-alt: #1c1a15;
+    --bg-footer: #0c0b09;
 
-    --green: #394b3a;
-    --green-light: #62715c;
+    --gold: #cda45f;
+    --gold-dim: rgba(205, 164, 95, 0.45);
 
-    --earth: #96785a;
-    --earth-dark: #68513d;
+    --earth: #a9835a;
 
-    --gold: #b89a63;
+    --white: #f7f3ea;
+    --muted: #b7b0a2;
 
-    --ink: #292820;
-    --muted: #777267;
-
-    --white: #f8f6f0;
-
-    --line: rgba(57, 75, 58, 0.18);
+    --line: rgba(205, 164, 95, 0.16);
 
     --serif: "Cormorant Garamond", serif;
     --sans: "Montserrat", sans-serif;
@@ -40,7 +35,7 @@ html {
 
 body {
     background: var(--bg);
-    color: var(--ink);
+    color: var(--white);
     font-family: var(--sans);
     font-weight: 400;
     line-height: 1.7;
@@ -92,14 +87,18 @@ button {
 
     transition:
         background 0.4s ease,
-        color 0.4s ease,
+        border-color 0.4s ease,
         height 0.4s ease;
+
+    border-bottom: 1px solid transparent;
 }
 
 .site-header.scrolled {
     height: 72px;
 
-    background: rgba(32, 37, 31, 0.95);
+    background: rgba(12, 11, 9, 0.92);
+
+    border-bottom-color: var(--line);
 
     backdrop-filter: blur(12px);
 }
@@ -108,6 +107,24 @@ button {
 /* LOGO */
 
 .logo {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.mark {
+    width: 26px;
+    height: 26px;
+
+    flex: 0 0 auto;
+
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 2;
+}
+
+.logo-text {
     display: flex;
     flex-direction: column;
 
@@ -118,14 +135,14 @@ button {
     letter-spacing: 0.08em;
 }
 
-.logo span {
+.logo-text span {
     font-family: var(--serif);
 
     font-size: 27px;
     font-weight: 500;
 }
 
-.logo strong {
+.logo-text strong {
     font-family: var(--sans);
 
     font-size: 9px;
@@ -134,6 +151,8 @@ button {
 
     margin-left: 2px;
     margin-top: 7px;
+
+    color: var(--gold);
 }
 
 
@@ -259,9 +278,9 @@ button {
     background:
         linear-gradient(
             90deg,
-            rgba(20, 27, 21, 0.78),
-            rgba(20, 27, 21, 0.28),
-            rgba(20, 27, 21, 0.15)
+            rgba(10, 9, 7, 0.9),
+            rgba(10, 9, 7, 0.55),
+            rgba(10, 9, 7, 0.3)
         );
 }
 
@@ -310,11 +329,11 @@ button {
 
     margin-top: 28px;
 
-    font-size: 14px;
+    font-size: 15px;
 
-    line-height: 1.9;
+    letter-spacing: 0.02em;
 
-    color: rgba(248, 246, 240, 0.84);
+    color: var(--gold);
 }
 
 .hero-actions {
@@ -347,7 +366,8 @@ button {
     transition:
         transform 0.3s ease,
         background 0.3s ease,
-        color 0.3s ease;
+        color 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .btn:hover {
@@ -355,25 +375,27 @@ button {
 }
 
 .btn-primary {
-    background: var(--green);
+    background: var(--gold);
 
-    color: var(--white);
+    color: var(--bg);
 }
 
 .btn-primary:hover {
-    background: var(--earth-dark);
+    background: var(--white);
 }
 
 .btn-outline {
-    border: 1px solid rgba(248, 246, 240, 0.6);
+    border: 1px solid var(--gold-dim);
 
     color: var(--white);
 }
 
 .btn-outline:hover {
-    background: var(--white);
+    background: var(--gold);
 
-    color: var(--green);
+    color: var(--bg);
+
+    border-color: var(--gold);
 }
 
 
@@ -399,7 +421,7 @@ button {
     width: 1px;
     height: 45px;
 
-    background: rgba(248, 246, 240, 0.7);
+    background: rgba(247, 243, 234, 0.7);
 }
 
 .scroll-cue small {
@@ -454,71 +476,48 @@ button {
     font-size: clamp(42px, 5vw, 68px);
 
     line-height: 1;
+
+    color: var(--white);
 }
 
 
-/* PARALLAX */
+/* DIVIDER */
 
-.parallax-section {
-    position: relative;
+.divider-band {
+    padding: 70px 0;
 
-    min-height: 520px;
+    background: var(--bg);
+}
 
+.divider-inner {
     display: flex;
-
     align-items: center;
     justify-content: center;
 
-    color: var(--white);
-
-    background-size: cover;
-
-    background-position: center;
-
-    background-attachment: fixed;
+    gap: 24px;
 }
 
-.parallax-one {
-    background-image: url("../assets/parallax1.jpg");
+.divider-line {
+    flex: 1;
+
+    max-width: 120px;
+    height: 1px;
+
+    background: var(--line);
 }
 
-.parallax-overlay {
-    position: absolute;
-    inset: 0;
+.divider-inner p {
+    font-family: var(--sans);
 
-    background: rgba(24, 34, 26, 0.48);
-}
+    font-size: 11px;
 
-.parallax-content {
-    position: relative;
-
-    z-index: 2;
-
-    width: min(850px, calc(100% - 50px));
-
-    text-align: center;
-}
-
-.parallax-content p {
-    font-family: var(--serif);
-
-    font-size: clamp(38px, 5vw, 65px);
-
-    line-height: 1.05;
-}
-
-.quote-author {
-    display: block;
-
-    margin-top: 30px;
-
-    font-size: 9px;
+    letter-spacing: 0.32em;
 
     text-transform: uppercase;
 
-    letter-spacing: 0.2em;
+    color: var(--gold);
 
-    color: rgba(248, 246, 240, 0.6);
+    white-space: nowrap;
 }
 
 
@@ -551,82 +550,73 @@ button {
     background: var(--bg);
 }
 
-.benefits-grid {
+.benefits-list {
     display: grid;
 
     grid-template-columns: repeat(2, 1fr);
 
-    border-top: 1px solid var(--line);
-    border-left: 1px solid var(--line);
+    gap: 36px 60px;
 }
 
-.benefit-card {
-    position: relative;
+.benefit-item {
+    display: flex;
+    align-items: center;
 
-    min-height: 260px;
+    gap: 20px;
 
-    padding: 42px;
+    padding-bottom: 22px;
 
-    border-right: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
-
-    transition:
-        background 0.35s ease,
-        transform 0.35s ease;
 }
 
-.benefit-card:hover {
-    background: var(--bg-light);
+.benefit-icon {
+    flex: 0 0 auto;
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--gold-dim);
+    border-radius: 50%;
+
+    color: var(--gold);
 }
 
-.card-number {
-    display: block;
+.benefit-icon svg {
+    width: 22px;
+    height: 22px;
 
-    margin-bottom: 55px;
-
-    font-size: 9px;
-
-    color: var(--earth);
-
-    letter-spacing: 0.2em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
-.benefit-card h3 {
-    font-family: var(--serif);
-
-    font-size: 34px;
-
-    font-weight: 500;
-
-    line-height: 1.1;
-}
-
-.benefit-card p {
-    max-width: 480px;
-
-    margin-top: 15px;
-
+.benefit-item p {
     font-size: 13px;
 
-    color: var(--muted);
+    letter-spacing: 0.03em;
+
+    text-transform: uppercase;
+
+    line-height: 1.4;
+
+    color: var(--white);
 }
 
 
 /* PRODUCTS */
 
 .products {
-    background: var(--bg-dark);
-
-    color: var(--white);
+    background: var(--bg-alt);
 }
 
-.products .section-label small,
 .products .heading-text {
-    color: rgba(248, 246, 240, 0.55);
-}
-
-.products .section-heading h2 {
-    color: var(--white);
+    color: var(--muted);
 }
 
 .products-grid {
@@ -638,9 +628,9 @@ button {
 }
 
 .product-card {
-    background: #292e28;
+    background: var(--bg);
 
-    border: 1px solid rgba(248, 246, 240, 0.08);
+    border: 1px solid rgba(247, 243, 234, 0.08);
 
     transition:
         transform 0.35s ease,
@@ -650,7 +640,7 @@ button {
 .product-card:hover {
     transform: translateY(-6px);
 
-    border-color: rgba(184, 154, 99, 0.55);
+    border-color: var(--gold-dim);
 }
 
 .product-image {
@@ -661,8 +651,8 @@ button {
     background:
         linear-gradient(
             135deg,
-            rgba(150, 120, 90, 0.2),
-            rgba(57, 75, 58, 0.4)
+            rgba(205, 164, 95, 0.16),
+            rgba(12, 11, 9, 0.4)
         );
 }
 
@@ -710,13 +700,13 @@ button {
 .product-info p {
     margin-top: 13px;
 
-    min-height: 65px;
+    min-height: 40px;
 
     font-size: 11px;
 
     line-height: 1.7;
 
-    color: rgba(248, 246, 240, 0.58);
+    color: var(--muted);
 }
 
 .product-bottom {
@@ -731,7 +721,7 @@ button {
 
     padding-top: 18px;
 
-    border-top: 1px solid rgba(248, 246, 240, 0.1);
+    border-top: 1px solid rgba(247, 243, 234, 0.1);
 }
 
 .product-price {
@@ -743,7 +733,7 @@ button {
 .product-button {
     padding: 9px 12px;
 
-    border: 1px solid rgba(184, 154, 99, 0.6);
+    border: 1px solid var(--gold-dim);
 
     font-size: 8px;
 
@@ -761,16 +751,14 @@ button {
 .product-button:hover {
     background: var(--gold);
 
-    color: var(--bg-dark);
+    color: var(--bg);
 }
 
 
 /* CONTACT */
 
 .contact {
-    background: var(--bg-dark);
-
-    color: var(--white);
+    background: var(--bg);
 }
 
 .contact-grid {
@@ -783,8 +771,6 @@ button {
 
 .contact h2 {
     margin-top: 25px;
-
-    color: var(--white);
 }
 
 .contact-intro > p:not(.eyebrow) {
@@ -794,11 +780,11 @@ button {
 
     font-size: 13px;
 
-    color: rgba(248, 246, 240, 0.55);
+    color: var(--muted);
 }
 
 .contact-links {
-    border-top: 1px solid rgba(248, 246, 240, 0.15);
+    border-top: 1px solid var(--line);
 }
 
 .contact-item {
@@ -810,7 +796,7 @@ button {
 
     padding: 25px 0;
 
-    border-bottom: 1px solid rgba(248, 246, 240, 0.15);
+    border-bottom: 1px solid var(--line);
 
     transition: padding-left 0.3s ease;
 }
@@ -841,57 +827,63 @@ button {
 /* FOOTER */
 
 .site-footer {
-    padding: 45px 0;
+    padding: 40px 0;
 
-    background: #171b16;
+    background: var(--bg-footer);
 
-    color: rgba(248, 246, 240, 0.6);
+    color: var(--muted);
 }
 
 .footer-inner {
-    display: grid;
+    display: flex;
 
-    grid-template-columns: 1fr 1fr 1fr;
+    flex-wrap: wrap;
 
     align-items: center;
+    justify-content: space-between;
 
-    gap: 30px;
+    gap: 20px;
 }
 
 .footer-brand {
     display: flex;
+    align-items: center;
 
+    gap: 10px;
+}
+
+.footer-brand .mark {
+    width: 20px;
+    height: 20px;
+}
+
+.footer-brand-text {
+    display: flex;
     flex-direction: column;
 
     line-height: 0.8;
 }
 
-.footer-brand span {
+.footer-brand-text span {
     font-family: var(--serif);
 
-    font-size: 28px;
+    font-size: 24px;
 
     color: var(--white);
 }
 
-.footer-brand strong {
-    margin-top: 7px;
+.footer-brand-text strong {
+    margin-top: 6px;
 
     font-size: 8px;
 
     letter-spacing: 0.3em;
-}
 
-.footer-inner p {
-    font-size: 10px;
-
-    text-align: center;
+    color: var(--gold);
 }
 
 .footer-inner small {
     font-size: 9px;
-
-    text-align: right;
 }
 
 
@@ -957,7 +949,7 @@ button {
 
         padding: 120px 30px 50px;
 
-        background: var(--bg-dark);
+        background: var(--bg-footer);
 
         flex-direction: column;
 
@@ -1026,8 +1018,21 @@ button {
 
     /* BENEFITS */
 
-    .benefits-grid {
+    .benefits-list {
         grid-template-columns: 1fr;
+    }
+
+
+    /* DIVIDER */
+
+    .divider-line {
+        max-width: 40px;
+    }
+
+    .divider-inner p {
+        font-size: 10px;
+
+        letter-spacing: 0.2em;
     }
 
 
@@ -1050,13 +1055,8 @@ button {
     /* FOOTER */
 
     .footer-inner {
-        grid-template-columns: 1fr;
+        justify-content: center;
 
-        text-align: center;
-    }
-
-    .footer-inner p,
-    .footer-inner small {
         text-align: center;
     }
 
@@ -1064,6 +1064,12 @@ button {
 
 
 @media (max-width: 520px) {
+
+    .divider-inner p {
+        white-space: normal;
+
+        text-align: center;
+    }
 
     .products-grid {
         grid-template-columns: 1fr;
