@@ -2,9 +2,7 @@
    CONFIGURACIÓN
 ====================================================== */
 
-// TODO: reemplazar por el número real de WhatsApp del cliente
-// (código de país + número, sin espacios, sin "+", ej: "5491122334455")
-const WHATSAPP_NUMBER = "5490000000000";
+const WHATSAPP_NUMBER = "5492804829591";
 
 const CART_STORAGE_KEY = "bpv-cart";
 
