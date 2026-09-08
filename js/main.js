@@ -257,6 +257,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
+       PESTAÑAS DE BENEFICIOS (DESTACADO)
+    ====================================================== */
+
+    const benefitsTabs =
+        document.querySelectorAll(".benefits-tab");
+
+    const benefitsPanels =
+        document.querySelectorAll(".benefits-panel");
+
+    if (benefitsTabs.length && benefitsPanels.length) {
+
+        benefitsTabs.forEach(tab => {
+
+            tab.addEventListener("click", () => {
+
+                const target = tab.getAttribute("data-tab");
+
+                benefitsTabs.forEach(other => {
+
+                    other.classList.remove("is-active");
+                    other.setAttribute("aria-selected", "false");
+
+                });
+
+                tab.classList.add("is-active");
+                tab.setAttribute("aria-selected", "true");
+
+                benefitsPanels.forEach(panel => {
+
+                    const isTarget =
+                        panel.getAttribute("data-panel") === target;
+
+                    panel.classList.toggle("is-active", isTarget);
+                    panel.hidden = !isTarget;
+
+                });
+
+            });
+
+        });
+
+    }
+
+
+    /* =====================================================
        ENLACES DIRECTOS A WHATSAPP
     ====================================================== */
 
