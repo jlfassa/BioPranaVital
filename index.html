@@ -4,18 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Bio Prana Vital | Dodecaedro de Geometría Sagrada</title>
+    <title>Bio Prana Vital | Terapias Holísticas Integrales</title>
 
     <meta
         name="description"
-        content="Bio Prana Vital — Dodecaedro en piedras naturales. Energía, equilibrio y bienestar."
+        content="Bio Prana Vital — Terapias holísticas integrales. Kit de aceites esenciales, gel corporal y dodecaedro orgonita en piedras naturales para tu bienestar."
     >
+
+    <!-- FAVICON -->
+
+    <link rel="icon" href="assets/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/favicon-180.png">
+
+    <!-- VISTA PREVIA AL COMPARTIR (WHATSAPP / INSTAGRAM / REDES) -->
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:site_name" content="Bio Prana Vital">
+    <meta property="og:title" content="Bio Prana Vital | Terapias Holísticas Integrales">
+    <meta
+        property="og:description"
+        content="Kit de aceites esenciales, gel corporal y dodecaedros en piedras naturales para tu bienestar."
+    >
+    <meta property="og:image" content="assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bio Prana Vital | Terapias Holísticas Integrales">
+    <meta
+        name="twitter:description"
+        content="Kit de aceites esenciales, gel corporal y dodecaedros en piedras naturales para tu bienestar."
+    >
+    <meta name="twitter:image" content="assets/og-image.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap"
         rel="stylesheet"
     >
 
@@ -48,25 +76,41 @@
 
         </a>
 
-        <button
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Abrir menú"
-            aria-expanded="false"
-        >
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div class="header-right">
 
-        <nav class="main-nav" id="mainNav">
+            <nav class="main-nav" id="mainNav">
 
-            <a href="#inicio">Inicio</a>
-            <a href="#beneficios">Beneficios</a>
-            <a href="#producto">Producto</a>
-            <a href="#contacto">Contacto</a>
+                <a href="#inicio">Inicio</a>
+                <a href="#productos">Productos</a>
+                <a href="#destacado">Destacado</a>
 
-        </nav>
+            </nav>
+
+            <button
+                class="cart-toggle"
+                id="cartToggle"
+                aria-label="Ver carrito de compras"
+            >
+                <svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 3h2l2.3 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L20.5 7H6.2"/>
+                    <circle cx="9.5" cy="20" r="1.4"/>
+                    <circle cx="17" cy="20" r="1.4"/>
+                </svg>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
 
     </header>
 
@@ -84,26 +128,30 @@
             <div class="hero-content reveal">
 
                 <p class="eyebrow">
-                    Geometría sagrada
+                    Bienestar integral
                 </p>
 
                 <h1>
-                    Dodecaedro
                     Bio Prana Vital
                 </h1>
 
+                <p class="hero-tagline">
+                    Terapias Holísticas Integrales
+                </p>
+
                 <p class="hero-text">
-                    Bienestar permanente en tu vida.
+                    Aceites, geles y dodecaedros en piedra natural
+                    para tu bienestar diario.
                 </p>
 
                 <div class="hero-actions">
 
-                    <a href="#producto" class="btn btn-primary">
-                        Ver el producto
+                    <a href="#productos" class="btn btn-primary">
+                        Ver productos
                     </a>
 
-                    <a href="#contacto" class="btn btn-outline">
-                        Contactar
+                    <a href="#" class="btn btn-outline whatsapp-link">
+                        Escribinos
                     </a>
 
                 </div>
@@ -118,9 +166,44 @@
         </section>
 
 
-        <!-- BENEFICIOS -->
+        <!-- FRANJA DE CONFIANZA -->
 
-        <section class="benefits section" id="beneficios">
+        <section class="trust-strip">
+
+            <div class="trust-background"></div>
+
+            <div class="trust-overlay"></div>
+
+            <div class="container trust-grid reveal">
+
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 20 C12 20 4 14.5 4 9 C4 6 6.2 4 9 4 C10.5 4 11.6 4.8 12 6 C12.4 4.8 13.5 4 15 4 C17.8 4 20 6 20 9 C20 14.5 12 20 12 20 Z"/></svg>
+                    <span>Ingredientes naturales</span>
+                </div>
+
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z"/></svg>
+                    <span>Piezas únicas</span>
+                </div>
+
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
+                    <span>Envíos a todo el país</span>
+                </div>
+
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 3 L19 6 V11 C19 16 16 19.5 12 21 C8 19.5 5 16 5 11 V6 Z"/></svg>
+                    <span>Atención personalizada</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PRODUCTOS -->
+
+        <section class="products section" id="productos">
 
             <div class="container">
 
@@ -128,139 +211,19 @@
 
                     <div class="section-label">
                         <span>01</span>
-                        <small>BENEFICIOS</small>
-                    </div>
-
-                    <div>
-
-                        <h2>
-                            Un mismo equilibrio
-                        </h2>
-
-                        <p class="heading-text">
-                            Lo que un dodecaedro Bio Prana Vital
-                            le suma a tu día a día.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="benefits-list">
-
-                    <div class="benefit-item reveal">
-
-                        <span class="benefit-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z"/>
-                            </svg>
-                        </span>
-
-                        <p>Equilibra la energía</p>
-
-                    </div>
-
-                    <div class="benefit-item reveal">
-
-                        <span class="benefit-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 3 L19 6 V11 C19 16 16 19.5 12 21 C8 19.5 5 16 5 11 V6 Z"/>
-                            </svg>
-                        </span>
-
-                        <p>Protege de energías negativas</p>
-
-                    </div>
-
-                    <div class="benefit-item reveal">
-
-                        <span class="benefit-icon">
-                            <svg viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="8"/>
-                                <circle cx="12" cy="12" r="4"/>
-                            </svg>
-                        </span>
-
-                        <p>Mejora la concentración y la claridad</p>
-
-                    </div>
-
-                    <div class="benefit-item reveal">
-
-                        <span class="benefit-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 20 C12 20 4 14.5 4 9 C4 6 6.2 4 9 4 C10.5 4 11.6 4.8 12 6 C12.4 4.8 13.5 4 15 4 C17.8 4 20 6 20 9 C20 14.5 12 20 12 20 Z"/>
-                            </svg>
-                        </span>
-
-                        <p>Armoniza el ambiente</p>
-
-                    </div>
-
-                    <div class="benefit-item reveal">
-
-                        <span class="benefit-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M7 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c2.2 0 3.8-2 5-3 1.2 1 2.8 3 5 3 1.7 0 3-1.3 3-3s-1.3-3-3-3c-2.2 0-3.8 2-5 3-1.2-1-2.8-3-5-3z"/>
-                            </svg>
-                        </span>
-
-                        <p>Favorece la salud y el bienestar</p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- DIVISOR -->
-
-        <section class="divider-band">
-
-            <div class="container divider-inner reveal">
-
-                <span class="divider-line"></span>
-
-                <p>Energía · Equilibrio · Bienestar</p>
-
-                <span class="divider-line"></span>
-
-            </div>
-
-        </section>
-
-
-        <!-- PRODUCTO -->
-
-        <section class="products section" id="producto">
-
-            <div class="container">
-
-                <div class="section-heading reveal">
-
-                    <div class="section-label">
-                        <span>02</span>
-                        <small>PRODUCTO</small>
+                        <small>PRODUCTOS</small>
                     </div>
 
                     <div>
 
                         <p class="eyebrow">
-                            El dodecaedro
+                            Nuestra selección
                         </p>
 
                         <h2>
-                            Elegí tu piedra
+                            Elegí tu ritual
+                            de bienestar
                         </h2>
-
-                        <p class="heading-text">
-                            Piezas únicas, con las variaciones
-                            propias de cada piedra.
-                        </p>
 
                     </div>
 
@@ -269,14 +232,19 @@
 
                 <div class="products-grid">
 
-                    <!-- PRODUCTO 01 -->
+                    <!-- DODECAEDRO — JASPE ROJO -->
 
-                    <article class="product-card reveal">
+                    <article
+                        class="product-card reveal"
+                        data-product-id="dodecaedro-jaspe-rojo"
+                        data-product-name="Dodecaedro Jaspe Rojo"
+                        data-product-image="assets/dodecaedro-jaspe-rojo.jpg"
+                    >
 
                         <div class="product-image">
                             <img
-                                src="assets/product-rosa.jpg"
-                                alt="Dodecaedro en cuarzo rosa"
+                                src="assets/dodecaedro-jaspe-rojo.jpg"
+                                alt="Dodecaedro en jaspe rojo Bio Prana Vital"
                                 loading="lazy"
                             >
                         </div>
@@ -284,26 +252,32 @@
                         <div class="product-info">
 
                             <span class="product-category">
-                                Piedra natural
+                                Geometría sagrada
                             </span>
 
                             <h3>
-                                Cuarzo Rosa
+                                Dodecaedro Jaspe Rojo
                             </h3>
 
                             <p>
-                                Amor propio, calma y energía suave.
+                                Fuerza, vitalidad y arraigo.
                             </p>
 
-                            <div class="product-bottom">
+                            <span class="product-price">
+                                Consultar precio
+                            </span>
 
-                                <span class="product-price">
-                                    Consultar precio
-                                </span>
+                            <div class="product-cart-row">
 
-                                <a href="#contacto" class="product-button">
-                                    Consultar
-                                </a>
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
 
                             </div>
 
@@ -312,14 +286,19 @@
                     </article>
 
 
-                    <!-- PRODUCTO 02 -->
+                    <!-- DODECAEDRO — CUARZO CRISTAL -->
 
-                    <article class="product-card reveal">
+                    <article
+                        class="product-card reveal"
+                        data-product-id="dodecaedro-cuarzo-cristal"
+                        data-product-name="Dodecaedro Cuarzo Cristal"
+                        data-product-image="assets/dodecaedro-cuarzo-cristal.jpg"
+                    >
 
                         <div class="product-image">
                             <img
-                                src="assets/product-amatista.jpg"
-                                alt="Dodecaedro en amatista"
+                                src="assets/dodecaedro-cuarzo-cristal.jpg"
+                                alt="Dodecaedro en cuarzo cristal Bio Prana Vital"
                                 loading="lazy"
                             >
                         </div>
@@ -327,26 +306,32 @@
                         <div class="product-info">
 
                             <span class="product-category">
-                                Piedra natural
+                                Geometría sagrada
                             </span>
 
                             <h3>
-                                Amatista
+                                Dodecaedro Cuarzo Cristal
                             </h3>
 
                             <p>
-                                Claridad mental, protección y descanso.
+                                Claridad mental y amplificación energética.
                             </p>
 
-                            <div class="product-bottom">
+                            <span class="product-price">
+                                Consultar precio
+                            </span>
 
-                                <span class="product-price">
-                                    Consultar precio
-                                </span>
+                            <div class="product-cart-row">
 
-                                <a href="#contacto" class="product-button">
-                                    Consultar
-                                </a>
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
 
                             </div>
 
@@ -355,14 +340,19 @@
                     </article>
 
 
-                    <!-- PRODUCTO 03 -->
+                    <!-- DODECAEDRO — SODALITA -->
 
-                    <article class="product-card reveal">
+                    <article
+                        class="product-card reveal"
+                        data-product-id="dodecaedro-sodalita"
+                        data-product-name="Dodecaedro Sodalita"
+                        data-product-image="assets/dodecaedro-sodalita.jpg"
+                    >
 
                         <div class="product-image">
                             <img
-                                src="assets/hero.jpg"
-                                alt="Dodecaedro en selección mixta de piedras naturales"
+                                src="assets/dodecaedro-sodalita.jpg"
+                                alt="Dodecaedro en sodalita Bio Prana Vital"
                                 loading="lazy"
                             >
                         </div>
@@ -370,26 +360,359 @@
                         <div class="product-info">
 
                             <span class="product-category">
-                                Edición limitada
+                                Geometría sagrada
                             </span>
 
                             <h3>
-                                Selección Mixta
+                                Dodecaedro Sodalita
                             </h3>
 
                             <p>
-                                Surtido de piedras para un equilibrio integral.
+                                Intuición, calma y comunicación.
                             </p>
 
-                            <div class="product-bottom">
+                            <span class="product-price">
+                                Consultar precio
+                            </span>
 
-                                <span class="product-price">
-                                    Consultar precio
-                                </span>
+                            <div class="product-cart-row">
 
-                                <a href="#contacto" class="product-button">
-                                    Consultar
-                                </a>
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- DODECAEDRO — CUARZO ROSA -->
+
+                    <article
+                        class="product-card reveal"
+                        data-product-id="dodecaedro-cuarzo-rosa"
+                        data-product-name="Dodecaedro Cuarzo Rosa"
+                        data-product-image="assets/dodecaedro-cuarzo-rosa.jpg"
+                    >
+
+                        <div class="product-image">
+                            <span class="product-badge">Más vendido</span>
+                            <img
+                                src="assets/dodecaedro-cuarzo-rosa.jpg"
+                                alt="Dodecaedro en cuarzo rosa Bio Prana Vital"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="product-info">
+
+                            <span class="product-category">
+                                Geometría sagrada
+                            </span>
+
+                            <h3>
+                                Dodecaedro Cuarzo Rosa
+                            </h3>
+
+                            <p>
+                                Amor propio y calma emocional.
+                            </p>
+
+                            <span class="product-price">
+                                Consultar precio
+                            </span>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- DODECAEDRO — OPALITA -->
+
+                    <article
+                        class="product-card reveal"
+                        data-product-id="dodecaedro-opalita"
+                        data-product-name="Dodecaedro Opalita"
+                        data-product-image="assets/dodecaedro-opalita.jpg"
+                    >
+
+                        <div class="product-image">
+                            <img
+                                src="assets/dodecaedro-opalita.jpg"
+                                alt="Dodecaedro en opalita Bio Prana Vital"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="product-info">
+
+                            <span class="product-category">
+                                Geometría sagrada
+                            </span>
+
+                            <h3>
+                                Dodecaedro Opalita
+                            </h3>
+
+                            <p>
+                                Equilibrio suave y conexión espiritual.
+                            </p>
+
+                            <span class="product-price">
+                                Consultar precio
+                            </span>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- DODECAEDRO — AVENTURINA VERDE -->
+
+                    <article
+                        class="product-card reveal"
+                        data-product-id="dodecaedro-aventurina"
+                        data-product-name="Dodecaedro Aventurina Verde"
+                        data-product-image="assets/dodecaedro-aventurina.jpg"
+                    >
+
+                        <div class="product-image">
+                            <img
+                                src="assets/dodecaedro-aventurina.jpg"
+                                alt="Dodecaedro en aventurina verde Bio Prana Vital"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="product-info">
+
+                            <span class="product-category">
+                                Geometría sagrada
+                            </span>
+
+                            <h3>
+                                Dodecaedro Aventurina Verde
+                            </h3>
+
+                            <p>
+                                Abundancia, prosperidad y buena suerte.
+                            </p>
+
+                            <span class="product-price">
+                                Consultar precio
+                            </span>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- DODECAEDRO — OJO DE TIGRE -->
+
+                    <article
+                        class="product-card reveal"
+                        data-product-id="dodecaedro-ojo-tigre"
+                        data-product-name="Dodecaedro Ojo de Tigre"
+                        data-product-image="assets/dodecaedro-ojo-tigre.jpg"
+                    >
+
+                        <div class="product-image">
+                            <img
+                                src="assets/dodecaedro-ojo-tigre.jpg"
+                                alt="Dodecaedro en ojo de tigre Bio Prana Vital"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="product-info">
+
+                            <span class="product-category">
+                                Geometría sagrada
+                            </span>
+
+                            <h3>
+                                Dodecaedro Ojo de Tigre
+                            </h3>
+
+                            <p>
+                                Protección, coraje y confianza.
+                            </p>
+
+                            <span class="product-price">
+                                Consultar precio
+                            </span>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- KIT DE ACEITES ESENCIALES -->
+
+                    <article
+                        class="product-card reveal"
+                        data-product-id="kit-aceites"
+                        data-product-name="Kit de Aceites Esenciales"
+                        data-product-image="assets/categoria-aceites.jpg"
+                    >
+
+                        <div class="product-image">
+                            <img
+                                src="assets/categoria-aceites.jpg"
+                                alt="Kit de aceites esenciales naturales Bio Prana Vital"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="product-info">
+
+                            <span class="product-category">
+                                Aromaterapia
+                            </span>
+
+                            <h3>
+                                Kit de Aceites Esenciales
+                            </h3>
+
+                            <p>
+                                Selección de aceites 100% naturales para
+                                masajes, difusión y rituales de aromaterapia.
+                            </p>
+
+                            <span class="product-price">
+                                Consultar precio
+                            </span>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- GEL CORPORAL -->
+
+                    <article
+                        class="product-card reveal"
+                        data-product-id="gel-corporal"
+                        data-product-name="Gel Corporal Energizante"
+                        data-product-image="assets/categoria-gel.jpg"
+                    >
+
+                        <div class="product-image">
+                            <img
+                                src="assets/categoria-gel.jpg"
+                                alt="Gel corporal natural Bio Prana Vital"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="product-info">
+
+                            <span class="product-category">
+                                Cuidado corporal
+                            </span>
+
+                            <h3>
+                                Gel Corporal Energizante
+                            </h3>
+
+                            <p>
+                                Gel natural formulado con activos botánicos
+                                para revitalizar y suavizar la piel.
+                            </p>
+
+                            <span class="product-price">
+                                Consultar precio
+                            </span>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
 
                             </div>
 
@@ -404,91 +727,145 @@
         </section>
 
 
-        <!-- CONTACTO -->
+        <!-- PRODUCTO DESTACADO -->
 
-        <section class="contact section" id="contacto">
+        <section
+            class="featured section"
+            id="destacado"
+            data-product-id="set-dodecaedros"
+            data-product-name="Set Dodecaedros x7 Piedras"
+            data-product-image="assets/categoria-dodecaedro.jpg"
+        >
 
-            <div class="container contact-grid">
+            <div class="container featured-grid">
 
-                <div class="contact-intro reveal">
+                <div class="featured-gallery reveal">
 
-                    <div class="section-label">
-
-                        <span>03</span>
-
-                        <small>CONTACTO</small>
-
+                    <div class="featured-image">
+                        <img
+                            id="featuredMainImage"
+                            src="assets/categoria-dodecaedro.jpg"
+                            alt="Set de 7 dodecaedros Bio Prana Vital en piedras naturales sobre madera"
+                        >
                     </div>
 
-                    <p class="eyebrow">
-                        Hablemos
-                    </p>
+                    <div class="featured-thumbs">
 
-                    <h2>
-                        ¿Listo para sumar
-                        tu dodecaedro?
-                    </h2>
+                        <button
+                            class="featured-thumb is-active"
+                            data-full="assets/categoria-dodecaedro.jpg"
+                            aria-label="Ver el set completo"
+                        >
+                            <img src="assets/categoria-dodecaedro.jpg" alt="">
+                        </button>
 
-                    <p>
-                        Escribinos por WhatsApp o Instagram para
-                        coordinar tu compra.
-                    </p>
+                        <button
+                            class="featured-thumb"
+                            data-full="assets/dodecaedro-jaspe-rojo.jpg"
+                            aria-label="Ver jaspe rojo"
+                        >
+                            <img src="assets/dodecaedro-jaspe-rojo.jpg" alt="">
+                        </button>
+
+                        <button
+                            class="featured-thumb"
+                            data-full="assets/dodecaedro-cuarzo-cristal.jpg"
+                            aria-label="Ver cuarzo cristal"
+                        >
+                            <img src="assets/dodecaedro-cuarzo-cristal.jpg" alt="">
+                        </button>
+
+                        <button
+                            class="featured-thumb"
+                            data-full="assets/dodecaedro-sodalita.jpg"
+                            aria-label="Ver sodalita"
+                        >
+                            <img src="assets/dodecaedro-sodalita.jpg" alt="">
+                        </button>
+
+                        <button
+                            class="featured-thumb"
+                            data-full="assets/dodecaedro-cuarzo-rosa.jpg"
+                            aria-label="Ver cuarzo rosa"
+                        >
+                            <img src="assets/dodecaedro-cuarzo-rosa.jpg" alt="">
+                        </button>
+
+                        <button
+                            class="featured-thumb"
+                            data-full="assets/dodecaedro-opalita.jpg"
+                            aria-label="Ver opalita"
+                        >
+                            <img src="assets/dodecaedro-opalita.jpg" alt="">
+                        </button>
+
+                        <button
+                            class="featured-thumb"
+                            data-full="assets/dodecaedro-aventurina.jpg"
+                            aria-label="Ver aventurina verde"
+                        >
+                            <img src="assets/dodecaedro-aventurina.jpg" alt="">
+                        </button>
+
+                        <button
+                            class="featured-thumb"
+                            data-full="assets/dodecaedro-ojo-tigre.jpg"
+                            aria-label="Ver ojo de tigre"
+                        >
+                            <img src="assets/dodecaedro-ojo-tigre.jpg" alt="">
+                        </button>
+
+                    </div>
 
                 </div>
 
 
-                <div class="contact-links reveal">
+                <div class="featured-info reveal">
 
-                    <a href="#" class="contact-item">
+                    <div class="section-label">
+                        <span>02</span>
+                        <small>DESTACADO</small>
+                    </div>
 
-                        <span class="contact-label">
-                            WHATSAPP
-                        </span>
+                    <p class="eyebrow">
+                        Producto destacado
+                    </p>
 
-                        <strong>
-                            [NÚMERO]
-                        </strong>
+                    <h2>
+                        Set Dodecaedros
+                        x7 Piedras
+                    </h2>
 
-                    </a>
+                    <p class="featured-text">
+                        Las 7 piedras reunidas en un solo set, para
+                        equilibrar todos los centros de energía.
+                    </p>
 
+                    <ul class="featured-list">
 
-                    <a href="#" class="contact-item">
+                        <li>7 piedras naturales distintas</li>
+                        <li>Ideal para grillas y rituales energéticos</li>
+                        <li>Pieza única, apta para decorar o meditar</li>
 
-                        <span class="contact-label">
-                            EMAIL
-                        </span>
+                    </ul>
 
-                        <strong>
-                            [EMAIL]
-                        </strong>
+                    <span class="product-price featured-price">
+                        Consultar precio
+                    </span>
 
-                    </a>
+                    <div class="product-cart-row featured-cart-row">
 
+                        <div class="qty-stepper">
+                            <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                            <span class="qty-value">1</span>
+                            <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                        </div>
 
-                    <a href="#" class="contact-item">
+                        <button type="button" class="btn btn-primary" data-action="add-to-cart">
+                            Agregar al carrito
+                        </button>
 
-                        <span class="contact-label">
-                            INSTAGRAM
-                        </span>
-
-                        <strong>
-                            [@USUARIO]
-                        </strong>
-
-                    </a>
-
-
-                    <a href="#" class="contact-item">
-
-                        <span class="contact-label">
-                            UBICACIÓN
-                        </span>
-
-                        <strong>
-                            [CIUDAD / DIRECCIÓN]
-                        </strong>
-
-                    </a>
+                    </div>
 
                 </div>
 
@@ -525,14 +902,81 @@
 
             </div>
 
+            <nav class="footer-nav">
+                <a href="#inicio">Inicio</a>
+                <a href="#productos">Productos</a>
+                <a href="#destacado">Destacado</a>
+                <a href="#" class="whatsapp-link">WhatsApp</a>
+                <a href="#">[@USUARIO]</a>
+            </nav>
+
             <small>
                 © <span id="year"></span>
                 Bio Prana Vital · [DATOS / REDES]
+                <span class="footer-credit">
+                    · Fotos: Unsplash
+                </span>
             </small>
 
         </div>
 
     </footer>
+
+
+    <!-- CARRITO -->
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+
+        <div class="cart-drawer-header">
+
+            <h2>Tu carrito</h2>
+
+            <button class="cart-close" id="cartClose" aria-label="Cerrar carrito">
+                ×
+            </button>
+
+        </div>
+
+        <div class="cart-items" id="cartItems">
+
+            <p class="cart-empty">Tu carrito está vacío.</p>
+
+        </div>
+
+        <div class="cart-drawer-footer">
+
+            <p class="cart-note">
+                Los precios se coordinan por WhatsApp según disponibilidad.
+            </p>
+
+            <button class="btn btn-primary cart-checkout" id="cartCheckout" disabled>
+                Finalizar pedido por WhatsApp
+            </button>
+
+            <button class="cart-clear" id="cartClear">
+                Vaciar carrito
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+
+    <a href="#" class="whatsapp-float whatsapp-link" aria-label="Escribinos por WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10 9 9.5 7.7 9.3 7.2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/>
+            <path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"/>
+        </svg>
+    </a>
+
+
+    <!-- TOASTS -->
+
+    <div class="toast-stack" id="toastStack"></div>
 
 
     <script src="js/main.js"></script>

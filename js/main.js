@@ -1,3 +1,14 @@
+/* =====================================================
+   CONFIGURACIÓN
+====================================================== */
+
+// TODO: reemplazar por el número real de WhatsApp del cliente
+// (código de país + número, sin espacios, sin "+", ej: "5491122334455")
+const WHATSAPP_NUMBER = "5490000000000";
+
+const CART_STORAGE_KEY = "bpv-cart";
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
 
@@ -202,5 +213,478 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     }
+
+
+    /* =====================================================
+       GALERÍA PRODUCTO DESTACADO
+    ====================================================== */
+
+    const mainImage =
+        document.getElementById("featuredMainImage");
+
+    const thumbs =
+        document.querySelectorAll(".featured-thumb");
+
+    if (mainImage && thumbs.length) {
+
+        thumbs.forEach(thumb => {
+
+            thumb.addEventListener(
+                "click",
+                () => {
+
+                    const full =
+                        thumb.getAttribute("data-full");
+
+                    if (!full) {
+                        return;
+                    }
+
+                    mainImage.src = full;
+
+                    thumbs.forEach(other => {
+
+                        other.classList.remove("is-active");
+
+                    });
+
+                    thumb.classList.add("is-active");
+
+                }
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       ENLACES DIRECTOS A WHATSAPP
+    ====================================================== */
+
+    function buildWhatsAppUrl(message) {
+
+        const base = `https://wa.me/${WHATSAPP_NUMBER}`;
+
+        return message
+            ? `${base}?text=${encodeURIComponent(message)}`
+            : base;
+
+    }
+
+    document
+        .querySelectorAll(".whatsapp-link")
+        .forEach(link => {
+
+            link.setAttribute(
+                "href",
+                buildWhatsAppUrl(
+                    "¡Hola Bio Prana Vital! Quiero más información."
+                )
+            );
+
+            link.setAttribute("target", "_blank");
+            link.setAttribute("rel", "noopener");
+
+        });
+
+
+    /* =====================================================
+       TOASTS (aviso al agregar al carrito)
+    ====================================================== */
+
+    const toastStack = document.getElementById("toastStack");
+
+    function showToast(name) {
+
+        if (!toastStack) {
+            return;
+        }
+
+        const toast = document.createElement("div");
+
+        toast.className = "toast";
+
+        toast.innerHTML = `
+            <span class="toast-check">✓</span>
+            <span>Agregado: <strong>${name}</strong></span>
+            <button type="button" class="toast-view">Ver carrito</button>
+        `;
+
+        toastStack.appendChild(toast);
+
+        requestAnimationFrame(() => {
+            toast.classList.add("is-visible");
+        });
+
+        toast
+            .querySelector(".toast-view")
+            .addEventListener("click", () => {
+
+                openCart();
+                dismiss();
+
+            });
+
+        const timer = window.setTimeout(dismiss, 3200);
+
+        function dismiss() {
+
+            window.clearTimeout(timer);
+
+            toast.classList.remove("is-visible");
+
+            window.setTimeout(() => toast.remove(), 300);
+
+        }
+
+    }
+
+
+    /* =====================================================
+       CARRITO DE COMPRAS
+    ====================================================== */
+
+    function loadCart() {
+
+        try {
+
+            const raw = localStorage.getItem(CART_STORAGE_KEY);
+
+            return raw ? JSON.parse(raw) : {};
+
+        } catch (error) {
+
+            return {};
+
+        }
+
+    }
+
+    function saveCart(cart) {
+
+        try {
+
+            localStorage.setItem(
+                CART_STORAGE_KEY,
+                JSON.stringify(cart)
+            );
+
+        } catch (error) {
+
+            /* almacenamiento no disponible, seguimos igual */
+
+        }
+
+    }
+
+    let cart = loadCart();
+
+    const cartToggle = document.getElementById("cartToggle");
+    const cartDrawer = document.getElementById("cartDrawer");
+    const cartOverlay = document.getElementById("cartOverlay");
+    const cartClose = document.getElementById("cartClose");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartCountEl = document.getElementById("cartCount");
+    const cartCheckoutBtn = document.getElementById("cartCheckout");
+    const cartClearBtn = document.getElementById("cartClear");
+
+
+    function openCart() {
+
+        cartDrawer.classList.add("is-open");
+        cartOverlay.classList.add("is-open");
+
+        cartDrawer.setAttribute("aria-hidden", "false");
+
+        document.body.style.overflow = "hidden";
+
+    }
+
+    function closeCart() {
+
+        cartDrawer.classList.remove("is-open");
+        cartOverlay.classList.remove("is-open");
+
+        cartDrawer.setAttribute("aria-hidden", "true");
+
+        document.body.style.overflow = "";
+
+    }
+
+    function cartTotalQty() {
+
+        return Object.values(cart)
+            .reduce((sum, item) => sum + item.qty, 0);
+
+    }
+
+    function renderCart() {
+
+        const ids = Object.keys(cart);
+
+        cartCountEl.textContent = cartTotalQty();
+
+        if (!ids.length) {
+
+            cartItemsEl.innerHTML =
+                '<p class="cart-empty">Tu carrito está vacío.</p>';
+
+            cartCheckoutBtn.disabled = true;
+
+            saveCart(cart);
+
+            return;
+
+        }
+
+        cartItemsEl.innerHTML = ids.map(id => {
+
+            const item = cart[id];
+
+            return `
+                <div class="cart-item" data-id="${id}">
+                    <img src="${item.image}" alt="">
+                    <div class="cart-item-info">
+                        <p class="cart-item-name">${item.name}</p>
+                        <div class="qty-stepper" data-id="${id}">
+                            <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                            <span class="qty-value">${item.qty}</span>
+                            <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                        </div>
+                    </div>
+                    <button type="button" class="cart-item-remove" data-id="${id}" aria-label="Quitar del carrito">×</button>
+                </div>
+            `;
+
+        }).join("");
+
+        cartCheckoutBtn.disabled = false;
+
+        saveCart(cart);
+
+    }
+
+    function addToCart(id, name, image, qty) {
+
+        if (!cart[id]) {
+
+            cart[id] = { name, image, qty: 0 };
+
+        }
+
+        cart[id].qty += qty;
+
+        renderCart();
+
+    }
+
+    function setItemQty(id, qty) {
+
+        if (!cart[id]) {
+            return;
+        }
+
+        if (qty <= 0) {
+
+            delete cart[id];
+
+        } else {
+
+            cart[id].qty = qty;
+
+        }
+
+        renderCart();
+
+    }
+
+    function removeItem(id) {
+
+        delete cart[id];
+
+        renderCart();
+
+    }
+
+    function clearCart() {
+
+        cart = {};
+
+        renderCart();
+
+    }
+
+    function buildOrderMessage() {
+
+        const ids = Object.keys(cart);
+
+        const lines = ids.map(id => {
+
+            const item = cart[id];
+
+            return `• ${item.name} x${item.qty}`;
+
+        });
+
+        return [
+            "¡Hola Bio Prana Vital! 👋",
+            "Quiero hacer este pedido:",
+            "",
+            ...lines,
+            "",
+            "¿Me ayudan a coordinar precio, forma de pago y envío?"
+        ].join("\n");
+
+    }
+
+
+    if (cartToggle && cartDrawer) {
+
+        cartToggle.addEventListener("click", openCart);
+        cartClose.addEventListener("click", closeCart);
+        cartOverlay.addEventListener("click", closeCart);
+
+        document.addEventListener("keydown", event => {
+
+            if (event.key === "Escape") {
+                closeCart();
+            }
+
+        });
+
+        cartClearBtn.addEventListener("click", clearCart);
+
+        cartCheckoutBtn.addEventListener("click", () => {
+
+            if (!Object.keys(cart).length) {
+                return;
+            }
+
+            window.open(
+                buildWhatsAppUrl(buildOrderMessage()),
+                "_blank",
+                "noopener"
+            );
+
+        });
+
+        /* Cantidad +/- dentro del carrito y quitar ítems */
+
+        cartItemsEl.addEventListener("click", event => {
+
+            const qtyBtn = event.target.closest(".qty-btn");
+            const removeBtn = event.target.closest(".cart-item-remove");
+
+            if (qtyBtn) {
+
+                const stepper = qtyBtn.closest(".qty-stepper");
+                const id = stepper.getAttribute("data-id");
+                const action = qtyBtn.getAttribute("data-action");
+                const current = cart[id] ? cart[id].qty : 0;
+
+                setItemQty(
+                    id,
+                    action === "increase" ? current + 1 : current - 1
+                );
+
+                return;
+
+            }
+
+            if (removeBtn) {
+
+                removeItem(removeBtn.getAttribute("data-id"));
+
+            }
+
+        });
+
+    }
+
+
+    /* =====================================================
+       SELECTORES DE CANTIDAD Y "AGREGAR AL CARRITO"
+       (tarjetas de producto y sección destacada)
+    ====================================================== */
+
+    document
+        .querySelectorAll("[data-product-id]")
+        .forEach(productEl => {
+
+            const stepper = productEl.querySelector(".qty-stepper");
+            const qtyValueEl = stepper
+                ? stepper.querySelector(".qty-value")
+                : null;
+
+            if (stepper && qtyValueEl) {
+
+                stepper.addEventListener("click", event => {
+
+                    const btn = event.target.closest(".qty-btn");
+
+                    if (!btn) {
+                        return;
+                    }
+
+                    let qty = parseInt(qtyValueEl.textContent, 10) || 1;
+
+                    if (btn.getAttribute("data-action") === "increase") {
+
+                        qty += 1;
+
+                    } else {
+
+                        qty = Math.max(1, qty - 1);
+
+                    }
+
+                    qtyValueEl.textContent = qty;
+
+                });
+
+            }
+
+            const addBtn = productEl.querySelector('[data-action="add-to-cart"]');
+
+            if (addBtn) {
+
+                addBtn.addEventListener("click", () => {
+
+                    const id = productEl.getAttribute("data-product-id");
+                    const name = productEl.getAttribute("data-product-name");
+                    const image = productEl.getAttribute("data-product-image");
+                    const qty = qtyValueEl
+                        ? parseInt(qtyValueEl.textContent, 10) || 1
+                        : 1;
+
+                    addToCart(id, name, image, qty);
+
+                    if (qtyValueEl) {
+                        qtyValueEl.textContent = "1";
+                    }
+
+                    const originalText = addBtn.textContent;
+
+                    addBtn.textContent = "Agregado ✓";
+                    addBtn.classList.add("is-added");
+
+                    window.setTimeout(() => {
+
+                        addBtn.textContent = originalText;
+                        addBtn.classList.remove("is-added");
+
+                    }, 1200);
+
+                    showToast(name);
+
+                });
+
+            }
+
+        });
+
+
+    renderCart();
 
 });
