@@ -90,7 +90,7 @@ button {
     left: 0;
 
     width: 100%;
-    height: 88px;
+    height: 92px;
 
     z-index: 1000;
 
@@ -100,27 +100,23 @@ button {
 
     padding: 0 50px;
 
-    color: var(--on-dark);
-
-    transition:
-        background 0.4s ease,
-        color 0.4s ease,
-        border-color 0.4s ease,
-        height 0.4s ease;
-
-    border-bottom: 1px solid transparent;
-}
-
-.site-header.scrolled {
-    height: 72px;
-
-    background: rgba(246, 239, 226, 0.94);
+    background: rgba(246, 239, 226, 0.96);
 
     color: var(--charcoal);
 
-    border-bottom-color: var(--line);
+    transition:
+        height 0.4s ease,
+        box-shadow 0.4s ease;
+
+    border-bottom: 1px solid var(--line);
 
     backdrop-filter: blur(12px);
+}
+
+.site-header.scrolled {
+    height: 74px;
+
+    box-shadow: 0 10px 30px -18px rgba(20, 19, 16, 0.35);
 }
 
 
@@ -129,51 +125,19 @@ button {
 .logo {
     display: flex;
     align-items: center;
-
-    gap: 12px;
 }
 
-.mark {
-    width: 26px;
-    height: 26px;
+.logo-img {
+    height: 50px;
+    width: auto;
 
-    flex: 0 0 auto;
+    display: block;
 
-    fill: none;
-    stroke: var(--gold);
-    stroke-width: 2;
+    transition: height 0.4s ease;
 }
 
-.logo-text {
-    display: flex;
-    flex-direction: column;
-
-    line-height: 0.85;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.08em;
-}
-
-.logo-text span {
-    font-family: var(--serif);
-
-    font-size: 26px;
-    font-weight: 600;
-}
-
-.logo-text strong {
-    font-family: var(--sans);
-
-    font-size: 9px;
-    font-weight: 500;
-
-    letter-spacing: 0.35em;
-
-    margin-left: 2px;
-    margin-top: 7px;
-
-    color: var(--gold);
+.site-header.scrolled .logo-img {
+    height: 42px;
 }
 
 
@@ -1397,40 +1361,13 @@ button {
 .footer-brand {
     display: flex;
     align-items: center;
-
-    gap: 10px;
 }
 
-.footer-brand .mark {
-    width: 20px;
-    height: 20px;
-}
+.footer-logo-img {
+    height: 34px;
+    width: auto;
 
-.footer-brand-text {
-    display: flex;
-    flex-direction: column;
-
-    line-height: 0.8;
-}
-
-.footer-brand-text span {
-    font-family: var(--serif);
-
-    font-size: 23px;
-    font-weight: 600;
-
-    color: var(--on-dark);
-}
-
-.footer-brand-text strong {
-    margin-top: 6px;
-
-    font-size: 8px;
-    font-weight: 500;
-
-    letter-spacing: 0.3em;
-
-    color: var(--gold);
+    display: block;
 }
 
 .footer-nav {
