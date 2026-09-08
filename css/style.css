@@ -358,6 +358,14 @@ button {
     object-position: center;
 }
 
+@media (min-width: 768px) {
+
+    .hero-img {
+        object-position: 41% 30%;
+    }
+
+}
+
 .hero-overlay {
     position: absolute;
     inset: 0;
