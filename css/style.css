@@ -1147,6 +1147,42 @@ button {
 }
 
 
+/* SOBRE NOSOTROS */
+
+.about-brief {
+    padding: 80px 0;
+
+    background: var(--cream);
+
+    text-align: center;
+}
+
+.about-brief-inner {
+    max-width: 640px;
+
+    margin-inline: auto;
+}
+
+.about-brief .eyebrow {
+    margin-bottom: 0;
+}
+
+.about-text {
+    font-family: var(--serif);
+
+    font-style: italic;
+    font-weight: 500;
+
+    font-size: clamp(18px, 2.2vw, 22px);
+
+    line-height: 1.6;
+
+    color: var(--ink-soft);
+
+    margin-top: 18px;
+}
+
+
 /* FOOTER */
 
 .site-footer {
