@@ -27,8 +27,8 @@
     --line: rgba(34, 31, 26, 0.14);
     --line-dark: rgba(246, 239, 226, 0.16);
 
-    --serif: "Playfair Display", "Cormorant Garamond", serif;
-    --sans: "Jost", "Inter", sans-serif;
+    --serif: "Fraunces", "Cormorant Garamond", serif;
+    --sans: "Outfit", "Jost", sans-serif;
 
     --container: 1180px;
 }
