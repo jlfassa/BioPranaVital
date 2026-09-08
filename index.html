@@ -1,3 +1,4 @@
+<!-- ✅ Prueba de edición remota — Claude, funcionando -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -121,7 +122,18 @@
 
         <section class="hero" id="inicio">
 
-            <div class="hero-background"></div>
+            <div class="hero-background">
+                <picture>
+                    <source media="(max-width: 767px)" srcset="assets/hero-mobile.jpg">
+                    <source media="(max-width: 1199px)" srcset="assets/hero-tablet.jpg">
+                    <img
+                        src="assets/hero-desktop.jpg"
+                        alt="Mujer meditando junto a un dodecaedro Bio Prana Vital"
+                        class="hero-img"
+                        fetchpriority="high"
+                    >
+                </picture>
+            </div>
 
             <div class="hero-overlay"></div>
 
