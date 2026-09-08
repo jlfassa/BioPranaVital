@@ -366,41 +366,32 @@
 
             <div class="container">
 
-                <div class="section-heading section-heading--simple reveal">
+                <div class="benefits-header reveal">
 
-                    <p class="eyebrow">
-                        Dodecaedro Orgonita
-                    </p>
+                    <div class="section-heading section-heading--simple">
 
-                    <h2>
-                        Un beneficio para cada
-                        momento de tu vida
-                    </h2>
+                        <p class="eyebrow">
+                            Dodecaedro Orgonita
+                        </p>
 
-                </div>
+                        <h2>
+                            Un beneficio para cada
+                            momento de tu vida
+                        </h2>
 
+                    </div>
 
-                <div class="benefits-tabs-nav reveal" role="tablist" aria-label="Beneficios del Dodecaedro Orgonita">
+                    <div class="benefits-nav-arrows">
 
-                    <button type="button" class="benefits-tab is-active" data-tab="1" data-image="assets/beneficio-energia.jpg" role="tab" aria-selected="true">
-                        Equilibra la energía
-                    </button>
+                        <button type="button" class="benefits-arrow" id="benefitsPrev" aria-label="Beneficio anterior">
+                            <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+                        </button>
 
-                    <button type="button" class="benefits-tab" data-tab="2" data-image="assets/beneficio-concentracion.jpg" role="tab" aria-selected="false">
-                        Concentración y claridad
-                    </button>
+                        <button type="button" class="benefits-arrow" id="benefitsNext" aria-label="Siguiente beneficio">
+                            <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+                        </button>
 
-                    <button type="button" class="benefits-tab" data-tab="3" data-image="assets/beneficio-salud.jpg" role="tab" aria-selected="false">
-                        Salud y bienestar
-                    </button>
-
-                    <button type="button" class="benefits-tab" data-tab="4" data-image="assets/beneficio-proteccion.jpg" role="tab" aria-selected="false">
-                        Protección energética
-                    </button>
-
-                    <button type="button" class="benefits-tab" data-tab="5" data-image="assets/beneficio-armonia.jpg" role="tab" aria-selected="false">
-                        Armonía integral
-                    </button>
+                    </div>
 
                 </div>
 
@@ -420,7 +411,7 @@
 
                         <!-- PANEL 1 — EQUILIBRA LA ENERGÍA -->
 
-                        <div class="benefits-panel is-active" data-panel="1" role="tabpanel">
+                        <div class="benefits-panel is-active" data-panel="1" data-image="assets/beneficio-energia.jpg" role="tabpanel">
 
                             <h3>Dodecaedro Orgonita: equilibrio y tecnología bioenergética</h3>
 
@@ -446,7 +437,7 @@
 
                         <!-- PANEL 2 — CONCENTRACIÓN Y CLARIDAD -->
 
-                        <div class="benefits-panel" data-panel="2" role="tabpanel" hidden>
+                        <div class="benefits-panel" data-panel="2" data-image="assets/beneficio-concentracion.jpg" role="tabpanel" hidden>
 
                             <h3>Concentración y claridad mental con el Dodecaedro Orgonita</h3>
 
@@ -480,7 +471,7 @@
 
                         <!-- PANEL 3 — SALUD Y BIENESTAR -->
 
-                        <div class="benefits-panel" data-panel="3" role="tabpanel" hidden>
+                        <div class="benefits-panel" data-panel="3" data-image="assets/beneficio-salud.jpg" role="tabpanel" hidden>
 
                             <h3>Bienestar y salud integral con el Dodecaedro Orgonita</h3>
 
@@ -515,7 +506,7 @@
 
                         <!-- PANEL 4 — PROTECCIÓN ENERGÉTICA -->
 
-                        <div class="benefits-panel" data-panel="4" role="tabpanel" hidden>
+                        <div class="benefits-panel" data-panel="4" data-image="assets/beneficio-proteccion.jpg" role="tabpanel" hidden>
 
                             <h3>Protección energética avanzada con el Dodecaedro Orgonita</h3>
 
@@ -549,7 +540,7 @@
 
                         <!-- PANEL 5 — ARMONÍA INTEGRAL -->
 
-                        <div class="benefits-panel" data-panel="5" role="tabpanel" hidden>
+                        <div class="benefits-panel" data-panel="5" data-image="assets/beneficio-armonia.jpg" role="tabpanel" hidden>
 
                             <h3>Armoniza el ambiente en cualquier ámbito de nuestras vidas</h3>
 
@@ -573,6 +564,17 @@
                         </div>
 
                     </div>
+
+                </div>
+
+
+                <div class="benefits-dots reveal" role="tablist" aria-label="Seleccionar beneficio">
+
+                    <button type="button" class="benefits-dot is-active" data-tab="1" aria-label="Equilibra la energía" aria-selected="true"></button>
+                    <button type="button" class="benefits-dot" data-tab="2" aria-label="Concentración y claridad" aria-selected="false"></button>
+                    <button type="button" class="benefits-dot" data-tab="3" aria-label="Salud y bienestar" aria-selected="false"></button>
+                    <button type="button" class="benefits-dot" data-tab="4" aria-label="Protección energética" aria-selected="false"></button>
+                    <button type="button" class="benefits-dot" data-tab="5" aria-label="Armonía integral" aria-selected="false"></button>
 
                 </div>
 

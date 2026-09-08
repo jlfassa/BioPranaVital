@@ -1084,13 +1084,72 @@ button {
     color: var(--on-dark-muted);
 }
 
-.benefits-tabs-nav {
+.benefits-header {
     display: flex;
-    flex-wrap: wrap;
 
-    gap: 10px;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 30px;
 
     margin-bottom: 50px;
+}
+
+.benefits-header .section-heading {
+    margin-bottom: 0;
+}
+
+.benefits-nav-arrows {
+    display: flex;
+
+    flex: 0 0 auto;
+
+    gap: 12px;
+}
+
+.benefits-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 52px;
+    height: 52px;
+
+    border: 1px solid var(--line-dark);
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: var(--on-dark);
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.benefits-arrow svg {
+    width: 18px;
+    height: 18px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.benefits-arrow:hover {
+    background: var(--gold);
+
+    border-color: var(--gold);
+
+    color: var(--black);
+
+    transform: translateY(-2px);
 }
 
 .benefits-showcase {
@@ -1131,46 +1190,44 @@ button {
     opacity: 0;
 }
 
-.benefits-tab {
-    padding: 13px 24px;
+.benefits-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    border: 1px solid var(--line-dark);
+    gap: 10px;
+
+    margin-top: 46px;
+}
+
+.benefits-dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+
+    border: 1px solid var(--gold-dim);
     border-radius: 999px;
 
     background: transparent;
-
-    color: var(--on-dark-muted);
-
-    font-size: 11px;
-    font-weight: 500;
-
-    letter-spacing: 0.04em;
-
-    text-transform: uppercase;
 
     cursor: pointer;
 
     transition:
         background 0.3s ease,
-        color 0.3s ease,
         border-color 0.3s ease,
-        transform 0.3s ease;
+        width 0.3s ease;
 }
 
-.benefits-tab:hover {
-    border-color: var(--gold-dim);
-
-    color: var(--on-dark);
-
-    transform: translateY(-1px);
+.benefits-dot:hover {
+    border-color: var(--gold);
 }
 
-.benefits-tab.is-active {
+.benefits-dot.is-active {
+    width: 26px;
+
     background: var(--gold);
 
     border-color: var(--gold);
-
-    color: var(--black);
 }
 
 .benefits-panel {
@@ -1958,14 +2015,15 @@ button {
         gap: 40px;
     }
 
-    .benefits-tabs-nav {
+    .benefits-header {
+        align-items: flex-start;
+
         margin-bottom: 34px;
     }
 
-    .benefits-tab {
-        padding: 11px 18px;
-
-        font-size: 10px;
+    .benefits-arrow {
+        width: 44px;
+        height: 44px;
     }
 
     .benefits-showcase {

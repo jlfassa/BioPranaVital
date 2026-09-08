@@ -257,59 +257,103 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       PESTAÑAS DE BENEFICIOS (DESTACADO)
+       CARRUSEL DE BENEFICIOS (DESTACADO)
     ====================================================== */
-
-    const benefitsTabs =
-        document.querySelectorAll(".benefits-tab");
 
     const benefitsPanels =
         document.querySelectorAll(".benefits-panel");
 
+    const benefitsDots =
+        document.querySelectorAll(".benefits-dot");
+
     const benefitsImage =
         document.getElementById("benefitsImage");
 
-    if (benefitsTabs.length && benefitsPanels.length) {
+    const benefitsPrev =
+        document.getElementById("benefitsPrev");
 
-        benefitsTabs.forEach(tab => {
+    const benefitsNext =
+        document.getElementById("benefitsNext");
 
-            tab.addEventListener("click", () => {
+    if (benefitsPanels.length) {
 
-                const target = tab.getAttribute("data-tab");
-                const image = tab.getAttribute("data-image");
+        const panelsArray = Array.from(benefitsPanels);
 
-                benefitsTabs.forEach(other => {
+        let currentIndex = panelsArray.findIndex(
+            panel => panel.classList.contains("is-active")
+        );
 
-                    other.classList.remove("is-active");
-                    other.setAttribute("aria-selected", "false");
+        if (currentIndex < 0) {
+            currentIndex = 0;
+        }
 
-                });
+        function goToSlide(index) {
 
-                tab.classList.add("is-active");
-                tab.setAttribute("aria-selected", "true");
+            const total = panelsArray.length;
 
-                benefitsPanels.forEach(panel => {
+            currentIndex = (index + total) % total;
 
-                    const isTarget =
-                        panel.getAttribute("data-panel") === target;
+            const activePanel = panelsArray[currentIndex];
+            const image = activePanel.getAttribute("data-image");
 
-                    panel.classList.toggle("is-active", isTarget);
-                    panel.hidden = !isTarget;
+            panelsArray.forEach((panel, i) => {
 
-                });
+                const isTarget = i === currentIndex;
 
-                if (benefitsImage && image) {
+                panel.classList.toggle("is-active", isTarget);
+                panel.hidden = !isTarget;
 
-                    benefitsImage.classList.add("is-fading");
+            });
 
-                    window.setTimeout(() => {
+            benefitsDots.forEach((dot, i) => {
 
-                        benefitsImage.src = image;
-                        benefitsImage.classList.remove("is-fading");
+                const isTarget = i === currentIndex;
 
-                    }, 200);
+                dot.classList.toggle("is-active", isTarget);
+                dot.setAttribute("aria-selected", isTarget);
 
-                }
+            });
+
+            if (benefitsImage && image) {
+
+                benefitsImage.classList.add("is-fading");
+
+                window.setTimeout(() => {
+
+                    benefitsImage.src = image;
+                    benefitsImage.classList.remove("is-fading");
+
+                }, 200);
+
+            }
+
+        }
+
+        if (benefitsPrev) {
+
+            benefitsPrev.addEventListener("click", () => {
+
+                goToSlide(currentIndex - 1);
+
+            });
+
+        }
+
+        if (benefitsNext) {
+
+            benefitsNext.addEventListener("click", () => {
+
+                goToSlide(currentIndex + 1);
+
+            });
+
+        }
+
+        benefitsDots.forEach((dot, i) => {
+
+            dot.addEventListener("click", () => {
+
+                goToSlide(i);
 
             });
 
