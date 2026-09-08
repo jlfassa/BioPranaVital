@@ -338,7 +338,7 @@ button {
 
 .hero-background {
     position: absolute;
-    inset: -5%;
+    inset: 0;
 
     overflow: hidden;
 }
@@ -356,22 +356,6 @@ button {
 
     object-fit: cover;
     object-position: center;
-
-    transform: scale(1.05);
-
-    animation: heroZoom 14s ease-out forwards;
-}
-
-@keyframes heroZoom {
-
-    from {
-        transform: scale(1.12);
-    }
-
-    to {
-        transform: scale(1);
-    }
-
 }
 
 .hero-overlay {
@@ -702,6 +686,10 @@ button {
     gap: 70px;
 
     margin-bottom: 60px;
+}
+
+.section-heading--simple {
+    display: block;
 }
 
 .heading-text {
