@@ -266,6 +266,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const benefitsPanels =
         document.querySelectorAll(".benefits-panel");
 
+    const benefitsImage =
+        document.getElementById("benefitsImage");
+
     if (benefitsTabs.length && benefitsPanels.length) {
 
         benefitsTabs.forEach(tab => {
@@ -273,6 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tab.addEventListener("click", () => {
 
                 const target = tab.getAttribute("data-tab");
+                const image = tab.getAttribute("data-image");
 
                 benefitsTabs.forEach(other => {
 
@@ -293,6 +297,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     panel.hidden = !isTarget;
 
                 });
+
+                if (benefitsImage && image) {
+
+                    benefitsImage.classList.add("is-fading");
+
+                    window.setTimeout(() => {
+
+                        benefitsImage.src = image;
+                        benefitsImage.classList.remove("is-fading");
+
+                    }, 200);
+
+                }
 
             });
 

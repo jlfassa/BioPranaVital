@@ -1076,11 +1076,12 @@ button {
 
 /* BENEFICIOS EN PESTAÑAS (DESTACADO) */
 
-.benefits-tabs {
-    margin-top: 90px;
-    padding-top: 60px;
+.featured .section-heading h2 {
+    color: var(--on-dark);
+}
 
-    border-top: 1px solid var(--line-dark);
+.featured .heading-text {
+    color: var(--on-dark-muted);
 }
 
 .benefits-tabs-nav {
@@ -1089,7 +1090,45 @@ button {
 
     gap: 10px;
 
-    margin-bottom: 44px;
+    margin-bottom: 50px;
+}
+
+.benefits-showcase {
+    display: grid;
+
+    grid-template-columns: 1fr 1.15fr;
+
+    gap: 60px;
+
+    align-items: stretch;
+}
+
+.benefits-showcase-image {
+    position: relative;
+
+    min-height: 420px;
+
+    border-radius: 4px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--line-dark);
+}
+
+.benefits-showcase-image img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: opacity 0.35s ease;
+}
+
+.benefits-showcase-image img.is-fading {
+    opacity: 0;
 }
 
 .benefits-tab {
@@ -1135,8 +1174,6 @@ button {
 }
 
 .benefits-panel {
-    max-width: 780px;
-
     animation: benefitsFade 0.45s ease;
 }
 
@@ -1921,15 +1958,24 @@ button {
         gap: 40px;
     }
 
-    .benefits-tabs {
-        margin-top: 60px;
-        padding-top: 40px;
+    .benefits-tabs-nav {
+        margin-bottom: 34px;
     }
 
     .benefits-tab {
         padding: 11px 18px;
 
         font-size: 10px;
+    }
+
+    .benefits-showcase {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .benefits-showcase-image {
+        min-height: 280px;
     }
 
 
