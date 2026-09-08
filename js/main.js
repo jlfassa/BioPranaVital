@@ -295,6 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const activePanel = panelsArray[currentIndex];
             const image = activePanel.getAttribute("data-image");
+            const imageAlt = activePanel.getAttribute("data-alt");
 
             panelsArray.forEach((panel, i) => {
 
@@ -321,6 +322,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.setTimeout(() => {
 
                     benefitsImage.src = image;
+
+                    if (imageAlt) {
+                        benefitsImage.alt = imageAlt;
+                    }
+
                     benefitsImage.classList.remove("is-fading");
 
                 }, 200);
