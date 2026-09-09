@@ -104,7 +104,7 @@ button {
         180deg,
         rgba(10, 9, 8, 0.5),
         rgba(10, 9, 8, 0.22) 70%,
-        rgba(10, 9, 8, 0)
+        transparent
     );
 
     color: var(--on-dark);
@@ -143,7 +143,7 @@ button {
 .logo-stack {
     position: relative;
 
-    height: 50px;
+    height: 70px;
 
     aspect-ratio: 1307 / 638;
 
@@ -151,7 +151,7 @@ button {
 }
 
 .site-header.scrolled .logo-stack {
-    height: 42px;
+    height: 56px;
 }
 
 .logo-img {
@@ -202,10 +202,10 @@ button {
 .main-nav a {
     position: relative;
 
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 500;
 
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
 
     text-transform: uppercase;
 
