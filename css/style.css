@@ -1177,7 +1177,26 @@ button {
 
     gap: 60px;
 
-    align-items: start;
+    align-items: center;
+}
+
+.benefits-extra {
+    margin-top: 50px;
+    padding-top: 40px;
+
+    border-top: 1px solid var(--line-dark);
+}
+
+.benefits-extra-item .benefits-panel-list {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 16px 30px;
+}
+
+.benefits-extra-item .benefits-panel-list li {
+    padding-left: 20px;
 }
 
 .benefits-showcase-image {
@@ -2027,6 +2046,15 @@ button {
 
     .benefits-showcase-image {
         min-height: 280px;
+    }
+
+    .benefits-extra {
+        margin-top: 34px;
+        padding-top: 28px;
+    }
+
+    .benefits-extra-item .benefits-panel-list {
+        grid-template-columns: 1fr;
     }
 
 

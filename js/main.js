@@ -266,6 +266,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const benefitsDots =
         document.querySelectorAll(".benefits-dot");
 
+    const benefitsExtraItems =
+        document.querySelectorAll(".benefits-extra-item");
+
+    const benefitsExtra =
+        document.querySelector(".benefits-extra");
+
     const benefitsImage =
         document.getElementById("benefitsImage");
 
@@ -314,6 +320,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 dot.setAttribute("aria-selected", isTarget);
 
             });
+
+            const slideNumber = String(currentIndex + 1);
+            let hasExtra = false;
+
+            benefitsExtraItems.forEach(item => {
+
+                const isTarget =
+                    item.getAttribute("data-extra") === slideNumber;
+
+                item.hidden = !isTarget;
+
+                if (isTarget) {
+                    hasExtra = true;
+                }
+
+            });
+
+            if (benefitsExtra) {
+                benefitsExtra.hidden = !hasExtra;
+            }
 
             if (benefitsImage && image) {
 
