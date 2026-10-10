@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector(".cart-drawer.is-open");
 
         const modalOpen =
-            document.querySelector(".product-modal[open]");
+            document.querySelector(".product-modal[open], .promo[open]");
 
         document.body.style.overflow =
             menuOpen || cartOpen || modalOpen ? "hidden" : "";
@@ -1019,6 +1019,121 @@ document.addEventListener("DOMContentLoaded", () => {
                 .click();
 
         });
+
+    }
+
+
+
+    /* =====================================================
+       POPUP DE CAPACITACIONES
+       Aparece una vez por visita a los 2,5 s. Al cerrarlo queda
+       la pastilla de abajo a la izquierda para volver a abrirlo.
+    ====================================================== */
+
+    const promo = document.getElementById("promo");
+    const promoTeaser = document.getElementById("promoTeaser");
+    const promoClose = document.getElementById("promoClose");
+    const promoLater = document.getElementById("promoLater");
+
+    const PROMO_SEEN_KEY = "bpv-promo-visto";
+
+    function promoWasSeen() {
+
+        try {
+            return sessionStorage.getItem(PROMO_SEEN_KEY) === "1";
+        } catch (error) {
+            return false;
+        }
+
+    }
+
+    function markPromoSeen() {
+
+        try {
+            sessionStorage.setItem(PROMO_SEEN_KEY, "1");
+        } catch (error) {
+            /* sin almacenamiento: vuelve a aparecer al recargar */
+        }
+
+    }
+
+    /* No interrumpir si la persona ya está en el carrito, el menú
+       o el detalle de un producto */
+
+    function somethingIsOpen() {
+
+        return Boolean(
+            document.querySelector(
+                ".cart-drawer.is-open, .main-nav.open, dialog[open]"
+            )
+        );
+
+    }
+
+    function openPromo() {
+
+        promoTeaser.hidden = true;
+
+        promo.showModal();
+
+        syncScrollLock();
+
+    }
+
+    if (promo && promoTeaser && typeof promo.showModal === "function") {
+
+        promo.addEventListener("close", () => {
+
+            markPromoSeen();
+
+            promoTeaser.hidden = false;
+
+            syncScrollLock();
+
+        });
+
+        promoClose.addEventListener("click", () => promo.close());
+        promoLater.addEventListener("click", () => promo.close());
+
+        /* Clic afuera de la tarjeta: cierra */
+
+        promo.addEventListener("click", event => {
+
+            if (event.target === promo) {
+                promo.close();
+            }
+
+        });
+
+        /* Al tocar "Quiero ser parte" también se da por visto */
+
+        promo
+            .querySelector(".promo-button")
+            .addEventListener("click", () => promo.close());
+
+        promoTeaser.addEventListener("click", openPromo);
+
+        if (promoWasSeen()) {
+
+            promoTeaser.hidden = false;
+
+        } else {
+
+            window.setTimeout(() => {
+
+                if (somethingIsOpen()) {
+
+                    promoTeaser.hidden = false;
+
+                } else {
+
+                    openPromo();
+
+                }
+
+            }, 2500);
+
+        }
 
     }
 

@@ -61,7 +61,7 @@
     <link rel="preload" as="image" href="assets/hero-mobile.jpg" media="(max-width: 767px)" fetchpriority="high">
     <link rel="preload" as="image" href="assets/hero-desktop.jpg" media="(min-width: 768px)" fetchpriority="high">
 
-    <link rel="stylesheet" href="css/style.css?v=20261008c">
+    <link rel="stylesheet" href="css/style.css?v=20261010e">
 
     <!-- Con JS activo se habilitan las animaciones de entrada (sin JS el contenido se ve igual) -->
     <script>document.documentElement.classList.add("js");</script>
@@ -184,6 +184,10 @@
             <div class="hero-top-fade"></div>
 
             <div class="hero-content">
+
+                <p class="hero-eyebrow">
+                    Bienestar · Energía · Equilibrio
+                </p>
 
                 <h1>
                     Bio Prana Vital
@@ -1539,12 +1543,61 @@
     </a>
 
 
+    <!-- POPUP: CAPACITACIONES (PRÓXIMAMENTE)
+         Aparece solo una vez por visita; al cerrarlo queda la pastilla
+         de abajo a la izquierda para volver a abrirlo. -->
+
+    <dialog class="promo" id="promo" aria-labelledby="promoTitle">
+
+        <button type="button" class="promo-close" id="promoClose" aria-label="Cerrar aviso">
+            ×
+        </button>
+
+        <div class="promo-emblem" aria-hidden="true">
+            <svg class="promo-ring" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="56"/>
+                <circle cx="60" cy="60" r="46"/>
+            </svg>
+            <img src="assets/logo-reversed.png" alt="" width="400" height="195" loading="lazy">
+        </div>
+
+        <span class="promo-badge">Muy pronto</span>
+
+        <h2 class="promo-title" id="promoTitle">
+            Estamos preparando algo nuevo y queremos
+            <em>que seas parte.</em>
+        </h2>
+
+        <p class="promo-text">
+            Descubrí cómo formar parte de Bio Prana Vital: capacitaciones
+            para conocer nuestros productos y desarrollar tus habilidades
+            comerciales.
+        </p>
+
+        <!-- Destino provisorio: WhatsApp con mensaje. Cambiar cuando el cliente defina adónde lleva. -->
+        <a href="https://wa.me/5492804829591?text=%C2%A1Hola%20Bio%20Prana%20Vital!%20Quiero%20ser%20parte%20y%20me%20interesan%20las%20capacitaciones." class="btn btn-primary promo-button" target="_blank" rel="noopener">
+            Quiero ser parte
+            <span class="btn-arrow" aria-hidden="true">→</span>
+        </a>
+
+        <button type="button" class="promo-later" id="promoLater">
+            Ahora no
+        </button>
+
+    </dialog>
+
+    <button type="button" class="promo-teaser" id="promoTeaser" aria-haspopup="dialog" hidden>
+        <span class="promo-teaser-dot" aria-hidden="true"></span>
+        <span>Muy pronto: <strong>capacitaciones</strong></span>
+    </button>
+
+
     <!-- TOASTS -->
 
     <div class="toast-stack" id="toastStack" aria-live="polite"></div>
 
 
-    <script src="js/main.js?v=20261008c"></script>
+    <script src="js/main.js?v=20261010e"></script>
 
 </body>
 </html>
