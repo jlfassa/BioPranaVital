@@ -53,6 +53,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
+       BLOQUEO DE SCROLL (menú y carrito comparten el mismo)
+    ====================================================== */
+
+    function syncScrollLock() {
+
+        const menuOpen =
+            document.querySelector(".main-nav.open");
+
+        const cartOpen =
+            document.querySelector(".cart-drawer.is-open");
+
+        const modalOpen =
+            document.querySelector(".product-modal[open]");
+
+        document.body.style.overflow =
+            menuOpen || cartOpen || modalOpen ? "hidden" : "";
+
+    }
+
+
+    /* =====================================================
        MENÚ MOBILE
     ====================================================== */
 
@@ -65,21 +86,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (menuToggle && mainNav) {
 
+        function setMenu(open) {
+
+            mainNav.classList.toggle("open", open);
+
+            header.classList.toggle("menu-open", open);
+
+            menuToggle.setAttribute("aria-expanded", open);
+
+            menuToggle.setAttribute(
+                "aria-label",
+                open ? "Cerrar menú" : "Abrir menú"
+            );
+
+            syncScrollLock();
+
+        }
+
 
         menuToggle.addEventListener(
             "click",
             () => {
 
-                const isOpen =
-                    mainNav.classList.toggle("open");
-
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    isOpen
-                );
-
-                document.body.style.overflow =
-                    isOpen ? "hidden" : "";
+                setMenu(!mainNav.classList.contains("open"));
 
             }
         );
@@ -87,26 +116,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         /* Cerrar al tocar un enlace */
 
-        const navLinks =
-            mainNav.querySelectorAll("a");
+        mainNav.querySelectorAll("a").forEach(link => {
 
-        navLinks.forEach(link => {
-
-            link.addEventListener(
-                "click",
-                () => {
-
-                    mainNav.classList.remove("open");
-
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                    document.body.style.overflow = "";
-
-                }
-            );
+            link.addEventListener("click", () => setMenu(false));
 
         });
 
@@ -117,16 +129,14 @@ document.addEventListener("DOMContentLoaded", () => {
             "keydown",
             event => {
 
-                if (event.key === "Escape") {
+                if (
+                    event.key === "Escape" &&
+                    mainNav.classList.contains("open")
+                ) {
 
-                    mainNav.classList.remove("open");
+                    setMenu(false);
 
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                    document.body.style.overflow = "";
+                    menuToggle.focus();
 
                 }
 
@@ -140,16 +150,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "resize",
             () => {
 
-                if (window.innerWidth > 800) {
+                if (
+                    window.innerWidth > 800 &&
+                    mainNav.classList.contains("open")
+                ) {
 
-                    mainNav.classList.remove("open");
-
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                    document.body.style.overflow = "";
+                    setMenu(false);
 
                 }
 
@@ -214,49 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       GALERÍA PRODUCTO DESTACADO
-    ====================================================== */
-
-    const mainImage =
-        document.getElementById("featuredMainImage");
-
-    const thumbs =
-        document.querySelectorAll(".featured-thumb");
-
-    if (mainImage && thumbs.length) {
-
-        thumbs.forEach(thumb => {
-
-            thumb.addEventListener(
-                "click",
-                () => {
-
-                    const full =
-                        thumb.getAttribute("data-full");
-
-                    if (!full) {
-                        return;
-                    }
-
-                    mainImage.src = full;
-
-                    thumbs.forEach(other => {
-
-                        other.classList.remove("is-active");
-
-                    });
-
-                    thumb.classList.add("is-active");
-
-                }
-            );
-
-        });
-
-    }
-
-
-    /* =====================================================
        CARRUSEL DE BENEFICIOS (DESTACADO)
     ====================================================== */
 
@@ -265,15 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const benefitsDots =
         document.querySelectorAll(".benefits-dot");
-
-    const benefitsExtraItems =
-        document.querySelectorAll(".benefits-extra-item");
-
-    const benefitsExtra =
-        document.querySelector(".benefits-extra");
-
-    const benefitsImage =
-        document.getElementById("benefitsImage");
 
     const benefitsPrev =
         document.getElementById("benefitsPrev");
@@ -299,16 +253,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             currentIndex = (index + total) % total;
 
-            const activePanel = panelsArray[currentIndex];
-            const image = activePanel.getAttribute("data-image");
-            const imageAlt = activePanel.getAttribute("data-alt");
-
             panelsArray.forEach((panel, i) => {
 
                 const isTarget = i === currentIndex;
 
                 panel.classList.toggle("is-active", isTarget);
-                panel.hidden = !isTarget;
+                panel.inert = !isTarget;
 
             });
 
@@ -320,44 +270,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 dot.setAttribute("aria-selected", isTarget);
 
             });
-
-            const slideNumber = String(currentIndex + 1);
-            let hasExtra = false;
-
-            benefitsExtraItems.forEach(item => {
-
-                const isTarget =
-                    item.getAttribute("data-extra") === slideNumber;
-
-                item.hidden = !isTarget;
-
-                if (isTarget) {
-                    hasExtra = true;
-                }
-
-            });
-
-            if (benefitsExtra) {
-                benefitsExtra.hidden = !hasExtra;
-            }
-
-            if (benefitsImage && image) {
-
-                benefitsImage.classList.add("is-fading");
-
-                window.setTimeout(() => {
-
-                    benefitsImage.src = image;
-
-                    if (imageAlt) {
-                        benefitsImage.alt = imageAlt;
-                    }
-
-                    benefitsImage.classList.remove("is-fading");
-
-                }, 200);
-
-            }
 
         }
 
@@ -391,11 +303,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
+
+        /* Cada slide trae su imagen con carga diferida: al terminar
+           de cargar la página se piden todas, así el cambio de slide
+           no muestra una imagen a medio bajar */
+
+        window.addEventListener("load", () => {
+
+            panelsArray.forEach(panel => {
+
+                const img = panel.querySelector("img");
+
+                if (img) {
+                    img.loading = "eager";
+                }
+
+            });
+
+        });
+
     }
 
 
     /* =====================================================
-       ENLACES DIRECTOS A WHATSAPP
+       WHATSAPP (los enlaces fijos ya vienen en el HTML;
+       esto arma el mensaje del pedido del carrito)
     ====================================================== */
 
     function buildWhatsAppUrl(message) {
@@ -407,22 +339,6 @@ document.addEventListener("DOMContentLoaded", () => {
             : base;
 
     }
-
-    document
-        .querySelectorAll(".whatsapp-link")
-        .forEach(link => {
-
-            link.setAttribute(
-                "href",
-                buildWhatsAppUrl(
-                    "¡Hola Bio Prana Vital! Quiero más información."
-                )
-            );
-
-            link.setAttribute("target", "_blank");
-            link.setAttribute("rel", "noopener");
-
-        });
 
 
     /* =====================================================
@@ -514,7 +430,58 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    let cart = loadCart();
+    /* Catálogo actual, tomado de las tarjetas de producto.
+       El carrito guardado solo conserva productos que siguen
+       existiendo y toma nombre e imagen de acá, no del guardado. */
+
+    const catalog = {};
+
+    document
+        .querySelectorAll("[data-product-id]")
+        .forEach(productEl => {
+
+            catalog[productEl.getAttribute("data-product-id")] = {
+                name: productEl.getAttribute("data-product-name"),
+                image: productEl.getAttribute("data-product-image")
+            };
+
+        });
+
+    /* Las variantes (ej. terminaciones del humidificador) también
+       son productos válidos del carrito */
+
+    document
+        .querySelectorAll("[data-variant-id]")
+        .forEach(chip => {
+
+            catalog[chip.getAttribute("data-variant-id")] = {
+                name: chip.getAttribute("data-variant-name"),
+                image: chip.getAttribute("data-variant-image")
+            };
+
+        });
+
+    function sanitizeCart(saved) {
+
+        const clean = {};
+
+        Object.keys(saved || {}).forEach(id => {
+
+            const qty = parseInt(saved[id] && saved[id].qty, 10);
+
+            if (catalog[id] && qty > 0) {
+
+                clean[id] = { ...catalog[id], qty };
+
+            }
+
+        });
+
+        return clean;
+
+    }
+
+    let cart = sanitizeCart(loadCart());
 
     const cartToggle = document.getElementById("cartToggle");
     const cartDrawer = document.getElementById("cartDrawer");
@@ -526,25 +493,48 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartClearBtn = document.getElementById("cartClear");
 
 
+    let cartReturnFocus = null;
+
     function openCart() {
+
+        cartReturnFocus = document.activeElement;
+
+        cartDrawer.inert = false;
 
         cartDrawer.classList.add("is-open");
         cartOverlay.classList.add("is-open");
 
-        cartDrawer.setAttribute("aria-hidden", "false");
+        cartToggle.setAttribute("aria-expanded", "true");
 
-        document.body.style.overflow = "hidden";
+        syncScrollLock();
+
+        cartClose.focus();
 
     }
 
     function closeCart() {
 
+        if (!cartDrawer.classList.contains("is-open")) {
+            return;
+        }
+
         cartDrawer.classList.remove("is-open");
         cartOverlay.classList.remove("is-open");
 
-        cartDrawer.setAttribute("aria-hidden", "true");
+        cartDrawer.inert = true;
 
-        document.body.style.overflow = "";
+        cartToggle.setAttribute("aria-expanded", "false");
+
+        syncScrollLock();
+
+        /* Si el foco venía de un toast que ya no existe, vuelve al ícono */
+
+        const target =
+            cartReturnFocus && document.body.contains(cartReturnFocus)
+                ? cartReturnFocus
+                : cartToggle;
+
+        target.focus();
 
     }
 
@@ -687,6 +677,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 closeCart();
             }
 
+            /* Mientras está abierto, Tab no sale del carrito */
+
+            if (
+                event.key === "Tab" &&
+                cartDrawer.classList.contains("is-open")
+            ) {
+
+                const focusables = Array.from(
+                    cartDrawer.querySelectorAll("button:not([disabled])")
+                );
+
+                const first = focusables[0];
+                const last = focusables[focusables.length - 1];
+
+                if (event.shiftKey && document.activeElement === first) {
+
+                    event.preventDefault();
+                    last.focus();
+
+                } else if (!event.shiftKey && document.activeElement === last) {
+
+                    event.preventDefault();
+                    first.focus();
+
+                }
+
+            }
+
         });
 
         cartClearBtn.addEventListener("click", clearCart);
@@ -785,6 +803,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (addBtn) {
 
+                /* Texto original fijo: si se toca dos veces seguidas
+                   no queda trabado en "Agregado ✓" */
+
+                const originalText = addBtn.textContent.trim();
+
+                let addedTimer = null;
+
                 addBtn.addEventListener("click", () => {
 
                     const id = productEl.getAttribute("data-product-id");
@@ -800,12 +825,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         qtyValueEl.textContent = "1";
                     }
 
-                    const originalText = addBtn.textContent;
-
                     addBtn.textContent = "Agregado ✓";
                     addBtn.classList.add("is-added");
 
-                    window.setTimeout(() => {
+                    window.clearTimeout(addedTimer);
+
+                    addedTimer = window.setTimeout(() => {
 
                         addBtn.textContent = originalText;
                         addBtn.classList.remove("is-added");
@@ -819,6 +844,183 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
         });
+
+
+
+    /* =====================================================
+       FILTROS DEL CATÁLOGO
+    ====================================================== */
+
+    const filterChips =
+        document.querySelectorAll(".filter-chip");
+
+    const productCards =
+        document.querySelectorAll(".product-card");
+
+    filterChips.forEach(chip => {
+
+        chip.addEventListener("click", () => {
+
+            const filter = chip.getAttribute("data-filter");
+
+            filterChips.forEach(other => {
+
+                const isTarget = other === chip;
+
+                other.classList.toggle("is-active", isTarget);
+                other.setAttribute("aria-pressed", isTarget);
+
+            });
+
+            productCards.forEach(card => {
+
+                card.hidden =
+                    filter !== "todos" &&
+                    card.getAttribute("data-category") !== filter;
+
+                /* Las tarjetas que aparecen se muestran sin esperar
+                   la animación de entrada */
+
+                card.classList.add("visible");
+
+            });
+
+        });
+
+    });
+
+
+    /* =====================================================
+       VARIANTES (TERMINACIONES)
+    ====================================================== */
+
+    document
+        .querySelectorAll(".product-variants")
+        .forEach(group => {
+
+            const card = group.closest(".product-card");
+            const img = card.querySelector(".product-image img");
+            const chips = group.querySelectorAll(".variant-chip");
+
+            chips.forEach(chip => {
+
+                chip.addEventListener("click", () => {
+
+                    chips.forEach(other => {
+
+                        const isTarget = other === chip;
+
+                        other.classList.toggle("is-active", isTarget);
+                        other.setAttribute("aria-pressed", isTarget);
+
+                    });
+
+                    card.setAttribute("data-product-id", chip.getAttribute("data-variant-id"));
+                    card.setAttribute("data-product-name", chip.getAttribute("data-variant-name"));
+                    card.setAttribute("data-product-image", chip.getAttribute("data-variant-image"));
+                    card.setAttribute("data-detail-images", chip.getAttribute("data-variant-full"));
+
+                    img.src = chip.getAttribute("data-variant-image");
+
+                });
+
+            });
+
+        });
+
+
+    /* =====================================================
+       DETALLE DE PRODUCTO (VENTANA)
+    ====================================================== */
+
+    const productModal = document.getElementById("productModal");
+    const productModalMedia = document.getElementById("productModalMedia");
+    const productModalBody = document.getElementById("productModalBody");
+    const productModalClose = document.getElementById("productModalClose");
+    const productModalAdd = document.getElementById("productModalAdd");
+
+    let modalCard = null;
+
+    function openProductDetail(card) {
+
+        modalCard = card;
+
+        const images = card.getAttribute("data-detail-images").split("|");
+        const alts = (card.getAttribute("data-detail-alts") || "").split("|");
+
+        productModalMedia.innerHTML = "";
+
+        images.forEach((src, i) => {
+
+            const img = document.createElement("img");
+
+            img.src = src;
+            img.alt = alts[i] || "";
+
+            productModalMedia.appendChild(img);
+
+        });
+
+        productModalBody.innerHTML =
+            card.querySelector(".product-detail").innerHTML;
+
+        const title = productModalBody.querySelector("h2");
+
+        if (title) {
+            title.id = "productModalTitle";
+        }
+
+        productModal.showModal();
+
+        productModal.scrollTop = 0;
+
+        syncScrollLock();
+
+    }
+
+    if (productModal && typeof productModal.showModal === "function") {
+
+        document
+            .querySelectorAll('[data-action="details"]')
+            .forEach(btn => {
+
+                btn.addEventListener("click", () => {
+
+                    openProductDetail(btn.closest(".product-card"));
+
+                });
+
+            });
+
+        productModalClose.addEventListener("click", () => productModal.close());
+
+        /* Clic afuera de la ventana: cierra */
+
+        productModal.addEventListener("click", event => {
+
+            if (event.target === productModal) {
+                productModal.close();
+            }
+
+        });
+
+        productModal.addEventListener("close", syncScrollLock);
+
+        productModalAdd.addEventListener("click", () => {
+
+            if (!modalCard) {
+                return;
+            }
+
+            productModal.close();
+
+            modalCard
+                .querySelector('[data-action="add-to-cart"]')
+                .click();
+
+        });
+
+    }
 
 
     renderCart();

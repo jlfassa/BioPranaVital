@@ -52,11 +52,53 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Outfit:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Outfit:wght@400;500;600&display=swap"
         rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="css/style.css">
+    <!-- IMAGEN PRINCIPAL (LCP) -->
+
+    <link rel="preload" as="image" href="assets/hero-mobile.jpg" media="(max-width: 767px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/hero-desktop.jpg" media="(min-width: 768px)" fetchpriority="high">
+
+    <link rel="stylesheet" href="css/style.css?v=20261008c">
+
+    <!-- Con JS activo se habilitan las animaciones de entrada (sin JS el contenido se ve igual) -->
+    <script>document.documentElement.classList.add("js");</script>
+
+    <!-- DATOS ESTRUCTURADOS -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://biopranavital.com/#organization",
+                "name": "Bio Prana Vital",
+                "description": "Terapias holísticas integrales. Kit de aceites esenciales, gel corporal y dodecaedro orgonita en piedras naturales.",
+                "url": "https://biopranavital.com/",
+                "logo": "https://biopranavital.com/assets/logo.png",
+                "image": "https://biopranavital.com/assets/og-image.jpg",
+                "telephone": "+5492804829591",
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+5492804829591",
+                    "contactType": "sales",
+                    "availableLanguage": "es"
+                }
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://biopranavital.com/#website",
+                "url": "https://biopranavital.com/",
+                "name": "Bio Prana Vital",
+                "inLanguage": "es-AR",
+                "publisher": { "@id": "https://biopranavital.com/#organization" }
+            }
+        ]
+    }
+    </script>
 </head>
 
 <body>
@@ -68,8 +110,8 @@
         <a href="#inicio" class="logo" aria-label="Bio Prana Vital — Inicio">
 
             <span class="logo-stack">
-                <img src="assets/logo-reversed.png" alt="" class="logo-img logo-img--reversed">
-                <img src="assets/logo.png" alt="" class="logo-img logo-img--color">
+                <img src="assets/logo-reversed.png" alt="" class="logo-img logo-img--reversed" width="400" height="195">
+                <img src="assets/logo.png" alt="" class="logo-img logo-img--color" width="400" height="195">
             </span>
 
         </a>
@@ -80,6 +122,8 @@
 
                 <a href="#inicio">Inicio</a>
                 <a href="#productos">Productos</a>
+                <a href="#destacado">Beneficios</a>
+                <a href="#historia">Nosotros</a>
 
             </nav>
 
@@ -87,6 +131,8 @@
                 class="cart-toggle"
                 id="cartToggle"
                 aria-label="Ver carrito de compras"
+                aria-controls="cartDrawer"
+                aria-expanded="false"
             >
                 <svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M3 3h2l2.3 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L20.5 7H6.2"/>
@@ -100,6 +146,7 @@
                 class="menu-toggle"
                 id="menuToggle"
                 aria-label="Abrir menú"
+                aria-controls="mainNav"
                 aria-expanded="false"
             >
                 <span></span>
@@ -125,6 +172,8 @@
                         src="assets/hero-desktop.jpg"
                         alt="Mujer meditando junto a un dodecaedro Bio Prana Vital"
                         class="hero-img"
+                        width="2400"
+                        height="1550"
                         fetchpriority="high"
                     >
                 </picture>
@@ -134,7 +183,7 @@
 
             <div class="hero-top-fade"></div>
 
-            <div class="hero-content reveal">
+            <div class="hero-content">
 
                 <h1>
                     Bio Prana Vital
@@ -155,7 +204,7 @@
                         Ver productos
                     </a>
 
-                    <a href="#" class="btn btn-outline whatsapp-link">
+                    <a href="https://wa.me/5492804829591?text=%C2%A1Hola%20Bio%20Prana%20Vital!%20Quiero%20m%C3%A1s%20informaci%C3%B3n." class="btn btn-outline" target="_blank" rel="noopener">
                         Escribinos
                     </a>
 
@@ -177,52 +226,67 @@
 
             <div class="container">
 
-                <div class="section-heading section-heading--simple reveal">
+                <div class="products-header reveal">
 
-                    <h2>
-                        Nuestros productos
-                    </h2>
+                    <div class="section-heading">
+
+                        <p class="eyebrow">Catálogo</p>
+
+                        <h2>
+                            Nuestros productos
+                        </h2>
+
+                    </div>
+
+                    <div class="products-filters" role="group" aria-label="Filtrar productos por categoría">
+                        <button type="button" class="filter-chip is-active" aria-pressed="true" data-filter="todos">Todos</button>
+                        <button type="button" class="filter-chip" aria-pressed="false" data-filter="aromaterapia">Aromaterapia</button>
+                        <button type="button" class="filter-chip" aria-pressed="false" data-filter="cuidado">Cuidado personal</button>
+                        <button type="button" class="filter-chip" aria-pressed="false" data-filter="bienestar">Bienestar</button>
+                        <button type="button" class="filter-chip" aria-pressed="false" data-filter="intimos">Íntimos</button>
+                    </div>
 
                 </div>
 
 
                 <div class="products-grid">
 
-                    <!-- DODECAEDRO ORGONITA -->
+                    <!-- DODECAEDRO ORGONITA PREMIUM -->
 
                     <article
                         class="product-card reveal"
+                        data-category="bienestar"
                         data-product-id="dodecaedro"
-                        data-product-name="Dodecaedro Orgonita"
-                        data-product-image="assets/categoria-dodecaedro.jpg"
+                        data-product-name="Dodecaedro Orgonita Premium"
+                        data-product-image="assets/productos/card/dodecaedro.jpg"
+                        data-detail-images="assets/productos/dodecaedro.jpg|assets/productos/dodecaedro-anatomia.jpg"
+                        data-detail-alts="Dodecaedro Orgonita Premium Bio Prana Vital sobre una mesa de madera|Anatomía del Dodecaedro: estructura, materiales y detalles"
                     >
 
-                        <div class="product-image">
+                        <button type="button" class="product-image" data-action="details" aria-label="Ver detalle: Dodecaedro Orgonita Premium">
                             <img
-                                src="assets/categoria-dodecaedro.jpg"
-                                alt="Dodecaedro orgonita en piedras naturales Bio Prana Vital"
+                                src="assets/productos/card/dodecaedro.jpg"
+                                width="576"
+                                height="720"
+                                alt="Dodecaedro Orgonita Premium Bio Prana Vital sobre una mesa de madera"
                                 loading="lazy"
                             >
-                        </div>
+                        </button>
 
                         <div class="product-info">
 
-                            <span class="product-category">
-                                Geometría sagrada
-                            </span>
+                            <span class="product-category">Geometría sagrada</span>
 
-                            <h3>
-                                Dodecaedro Orgonita
-                            </h3>
+                            <h3>Dodecaedro Orgonita Premium</h3>
 
-                            <p>
-                                Pieza en piedras naturales que equilibra
-                                la energía de tu espacio y tu práctica diaria.
-                            </p>
+                            <p class="product-tagline">Geometría, presencia y armonía</p>
 
-                            <span class="product-price">
-                                Consultar precio
-                            </span>
+                            <p class="product-summary">Pieza artesanal de resina con inclusiones metálicas y 12 caras pentagonales. Cada unidad es única.</p>
+
+                            <div class="product-meta">
+                                <span class="product-price">Consultar precio</span>
+                                <button type="button" class="product-more" data-action="details">Ver más</button>
+                            </div>
 
                             <div class="product-cart-row">
 
@@ -238,46 +302,66 @@
 
                             </div>
 
+                        </div>
+
+                        <div class="product-detail" hidden>
+                            <p class="product-detail-kicker">Geometría sagrada</p>
+                            <h2 class="product-detail-title">Dodecaedro Orgonita Premium</h2>
+                            <p class="product-detail-tagline">Geometría, presencia y armonía</p>
+                            <p>El Dodecaedro Orgonita Premium BIO PRANA VITAL es una pieza artesanal de diseño bioenergético que combina resina, inclusiones metálicas y geometría dodecaédrica en un objeto pensado para acompañar espacios de bienestar, meditación, descanso y concentración.</p>
+                            <p>Su estructura está formada por 12 caras pentagonales, una geometría tradicionalmente asociada dentro de distintas corrientes holísticas con el equilibrio, la integración y la armonía del entorno. En su interior, las partículas e inclusiones metálicas quedan encapsuladas en una matriz de resina oscura y translúcida, creando una pieza única, con profundidad visual y reflejos que cambian según la incidencia de la luz.</p>
+                            <p>Cada Dodecaedro BIO PRANA VITAL presenta pequeñas variaciones propias de su proceso de elaboración: distribución de los metales, transparencias, tonalidades y microburbujas convierten a cada unidad en una pieza singular.</p>
+                            <h3>Una pieza para integrar a tu espacio</h3>
+                            <ul>
+                                <li>Escritorios y espacios de trabajo</li>
+                                <li>Dormitorios y livings</li>
+                                <li>Salas de meditación o yoga</li>
+                                <li>Consultorios y espacios de bienestar</li>
+                                <li>Rincones de lectura o relajación</li>
+                                <li>Ambientes donde busques crear una estética más equilibrada y consciente</li>
+                            </ul>
+                            <p class="product-detail-closing">Más que un objeto decorativo, el Dodecaedro fue concebido como una pieza simbólica para acompañar tus rituales cotidianos y transformar visualmente el espacio que habitás. Un punto de encuentro entre geometría, materia y bienestar.</p>
                         </div>
 
                     </article>
 
 
-                    <!-- KIT DE ACEITES ESENCIALES -->
+                    <!-- RITUAL AMANECER -->
 
                     <article
                         class="product-card reveal"
-                        data-product-id="kit-aceites"
-                        data-product-name="Kit de Aceites Esenciales"
-                        data-product-image="assets/categoria-aceites.jpg"
+                        data-category="aromaterapia"
+                        data-product-id="ritual-amanecer"
+                        data-product-name="Aceite Ritual Amanecer"
+                        data-product-image="assets/productos/card/ritual-amanecer.jpg"
+                        data-detail-images="assets/productos/ritual-amanecer.jpg"
+                        data-detail-alts="Aceite esencial Ritual Amanecer Bio Prana Vital con naranjas y menta"
                     >
 
-                        <div class="product-image">
+                        <button type="button" class="product-image" data-action="details" aria-label="Ver detalle: Ritual Amanecer">
                             <img
-                                src="assets/categoria-aceites.jpg"
-                                alt="Kit de aceites esenciales naturales Bio Prana Vital"
+                                src="assets/productos/card/ritual-amanecer.jpg"
+                                width="864"
+                                height="720"
+                                alt="Aceite esencial Ritual Amanecer Bio Prana Vital con naranjas y menta"
                                 loading="lazy"
                             >
-                        </div>
+                        </button>
 
                         <div class="product-info">
 
-                            <span class="product-category">
-                                Aromaterapia
-                            </span>
+                            <span class="product-category">Aceite para difusor · 30 ml</span>
 
-                            <h3>
-                                Kit de Aceites Esenciales
-                            </h3>
+                            <h3>Ritual Amanecer</h3>
 
-                            <p>
-                                Selección de aceites 100% naturales para
-                                masajes, difusión y rituales de aromaterapia.
-                            </p>
+                            <p class="product-tagline">Claridad y energía</p>
 
-                            <span class="product-price">
-                                Consultar precio
-                            </span>
+                            <p class="product-summary">Cítricos seleccionados y menta piperita para arrancar el día con frescura.</p>
+
+                            <div class="product-meta">
+                                <span class="product-price">Consultar precio</span>
+                                <button type="button" class="product-more" data-action="details">Ver más</button>
+                            </div>
 
                             <div class="product-cart-row">
 
@@ -293,46 +377,72 @@
 
                             </div>
 
+                        </div>
+
+                        <div class="product-detail" hidden>
+                            <p class="product-detail-kicker">Aceite para difusor · 30 ml</p>
+                            <h2 class="product-detail-title">Ritual Amanecer</h2>
+                            <p class="product-detail-tagline">Claridad y energía</p>
+                            <p>Ritual Amanecer BIO PRANA VITAL combina la frescura vibrante de los cítricos seleccionados con el carácter limpio y mentolado de la menta piperita en una mezcla aromática pensada para acompañar el inicio del día con una sensación de energía, frescura y renovación.</p>
+                            <p>Su perfil aromático es cítrico, fresco, chispeante y mentolado, ideal para crear ambientes más dinámicos y agradables durante las primeras horas de la mañana, jornadas de trabajo, estudio o momentos en los que buscás activar el espacio y cambiar el ritmo del ambiente.</p>
+                            <dl class="product-detail-facts">
+                                <div><dt>Perfil aromático</dt><dd>Cítrico · Fresco · Vibrante · Mentolado</dd></div>
+                                <div><dt>Ingredientes destacados</dt><dd>Cítricos seleccionados · Menta piperita</dd></div>
+                                <div><dt>Momento ideal</dt><dd>Mañanas, inicio de jornada o momentos en los que quieras renovar el ambiente con una sensación fresca y estimulante.</dd></div>
+                                <div><dt>Contenido neto</dt><dd>30 ml</dd></div>
+                            </dl>
+                            <h3>Ideal para</h3>
+                            <ul>
+                                <li>Comenzar la mañana</li>
+                                <li>Espacios de trabajo o estudio</li>
+                                <li>Home office</li>
+                                <li>Rutinas de lectura o creatividad</li>
+                                <li>Momentos en los que buscás una atmósfera más fresca y activa</li>
+                            </ul>
+                            <h3>Modo de uso</h3>
+                            <p>Agregar la cantidad recomendada por el fabricante de tu difusor o humidificador al agua del depósito y disfrutar de su aroma en el ambiente.</p>
+                            <p class="product-detail-closing">BIO PRANA VITAL · Aromas que acompañan tu ritual diario.</p>
                         </div>
 
                     </article>
 
 
-                    <!-- GEL CORPORAL -->
+                    <!-- ARMONÍA DIARIA -->
 
                     <article
                         class="product-card reveal"
-                        data-product-id="gel-corporal"
-                        data-product-name="Gel Corporal Energizante"
-                        data-product-image="assets/placeholder-producto.jpg"
+                        data-category="aromaterapia"
+                        data-product-id="armonia-diaria"
+                        data-product-name="Aceite Armonía Diaria"
+                        data-product-image="assets/productos/card/armonia-diaria.jpg"
+                        data-detail-images="assets/productos/armonia-diaria.jpg"
+                        data-detail-alts="Aceite esencial Armonía Diaria Bio Prana Vital con romero y lavanda"
                     >
 
-                        <div class="product-image">
+                        <button type="button" class="product-image" data-action="details" aria-label="Ver detalle: Armonía Diaria">
                             <img
-                                src="assets/placeholder-producto.jpg"
-                                alt="Espacio de ejemplo — foto del Gel Corporal Energizante próximamente"
+                                src="assets/productos/card/armonia-diaria.jpg"
+                                width="864"
+                                height="720"
+                                alt="Aceite esencial Armonía Diaria Bio Prana Vital con romero y lavanda"
                                 loading="lazy"
                             >
-                        </div>
+                        </button>
 
                         <div class="product-info">
 
-                            <span class="product-category">
-                                Cuidado corporal
-                            </span>
+                            <span class="product-category">Aceite para difusor · 30 ml</span>
 
-                            <h3>
-                                Gel Corporal Energizante
-                            </h3>
+                            <h3>Armonía Diaria</h3>
 
-                            <p>
-                                Gel natural formulado con activos botánicos
-                                para revitalizar y suavizar la piel.
-                            </p>
+                            <p class="product-tagline">Equilibrio y enfoque</p>
 
-                            <span class="product-price">
-                                Consultar precio
-                            </span>
+                            <p class="product-summary">Romero marroquí y lavanda silvestre para acompañar el día con calma y claridad.</p>
+
+                            <div class="product-meta">
+                                <span class="product-price">Consultar precio</span>
+                                <button type="button" class="product-more" data-action="details">Ver más</button>
+                            </div>
 
                             <div class="product-cart-row">
 
@@ -348,6 +458,709 @@
 
                             </div>
 
+                        </div>
+
+                        <div class="product-detail" hidden>
+                            <p class="product-detail-kicker">Aceite para difusor · 30 ml</p>
+                            <h2 class="product-detail-title">Armonía Diaria</h2>
+                            <p class="product-detail-tagline">Equilibrio y enfoque</p>
+                            <p>Armonía Diaria BIO PRANA VITAL combina el carácter herbal del romero marroquí con la suavidad aromática de la lavanda silvestre en una mezcla pensada para acompañar los distintos momentos del día con una sensación de equilibrio, claridad y calma.</p>
+                            <p>Su perfil aromático es herbal, balsámico y delicadamente floral, ideal para crear ambientes agradables, ordenados y reconfortantes sin resultar invasivos. Es una excelente opción para espacios de trabajo, estudio, lectura, meditación, yoga o simplemente para esos momentos en los que necesitás bajar el ritmo y reconectar con tu entorno.</p>
+                            <dl class="product-detail-facts">
+                                <div><dt>Perfil aromático</dt><dd>Herbal · Balsámico · Floral · Suave</dd></div>
+                                <div><dt>Ingredientes destacados</dt><dd>Romero marroquí · Lavanda silvestre</dd></div>
+                                <div><dt>Momento ideal</dt><dd>Media tarde, momentos de concentración, pausas activas o transiciones del día.</dd></div>
+                                <div><dt>Contenido neto</dt><dd>30 ml</dd></div>
+                            </dl>
+                            <h3>Ideal para</h3>
+                            <ul>
+                                <li>Espacios de trabajo o estudio</li>
+                                <li>Prácticas de yoga y meditación</li>
+                                <li>Pausas durante jornadas intensas</li>
+                                <li>Livings, dormitorios y rincones de lectura</li>
+                                <li>Crear una atmósfera más serena y equilibrada</li>
+                            </ul>
+                            <h3>Modo de uso</h3>
+                            <p>Agregar la cantidad recomendada por el fabricante de tu difusor o humidificador al agua del depósito y disfrutar de su aroma en el ambiente.</p>
+                            <p class="product-detail-closing">BIO PRANA VITAL · Aromas que acompañan tu ritual diario.</p>
+                        </div>
+
+                    </article>
+
+
+                    <!-- SERENIDAD NOCTURNA -->
+
+                    <article
+                        class="product-card reveal"
+                        data-category="aromaterapia"
+                        data-product-id="serenidad-nocturna"
+                        data-product-name="Aceite Serenidad Nocturna"
+                        data-product-image="assets/productos/card/serenidad-nocturna.jpg"
+                        data-detail-images="assets/productos/serenidad-nocturna.jpg"
+                        data-detail-alts="Aceite esencial Serenidad Nocturna Bio Prana Vital con lavanda, manzanilla y naranja"
+                    >
+
+                        <button type="button" class="product-image" data-action="details" aria-label="Ver detalle: Serenidad Nocturna">
+                            <img
+                                src="assets/productos/card/serenidad-nocturna.jpg"
+                                width="864"
+                                height="720"
+                                alt="Aceite esencial Serenidad Nocturna Bio Prana Vital con lavanda, manzanilla y naranja"
+                                loading="lazy"
+                            >
+                        </button>
+
+                        <div class="product-info">
+
+                            <span class="product-category">Aceite para difusor · 30 ml</span>
+
+                            <h3>Serenidad Nocturna</h3>
+
+                            <p class="product-tagline">Calma y descanso</p>
+
+                            <p class="product-summary">Lavanda, manzanilla y naranja dulce para cerrar el día en un ambiente sereno.</p>
+
+                            <div class="product-meta">
+                                <span class="product-price">Consultar precio</span>
+                                <button type="button" class="product-more" data-action="details">Ver más</button>
+                            </div>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-detail" hidden>
+                            <p class="product-detail-kicker">Aceite para difusor · 30 ml</p>
+                            <h2 class="product-detail-title">Serenidad Nocturna</h2>
+                            <p class="product-detail-tagline">Calma y descanso</p>
+                            <p>Serenidad Nocturna BIO PRANA VITAL combina la suavidad floral de la lavanda, la delicadeza de la manzanilla y el toque cálido de la naranja dulce en una mezcla aromática pensada para acompañar el cierre del día y crear una atmósfera más serena y reconfortante.</p>
+                            <p>Su perfil aromático es floral, suave, dulce y delicadamente cítrico, ideal para dormitorios, momentos de lectura, meditación, rutinas nocturnas o cualquier espacio donde quieras bajar el ritmo y preparar el ambiente para el descanso.</p>
+                            <dl class="product-detail-facts">
+                                <div><dt>Perfil aromático</dt><dd>Floral · Suave · Dulce · Cítrico</dd></div>
+                                <div><dt>Ingredientes destacados</dt><dd>Lavanda · Manzanilla · Naranja dulce</dd></div>
+                                <div><dt>Momento ideal</dt><dd>Por la noche, durante los últimos momentos del día o cuando quieras crear un entorno más calmo y acogedor.</dd></div>
+                                <div><dt>Contenido neto</dt><dd>30 ml</dd></div>
+                            </dl>
+                            <h3>Ideal para</h3>
+                            <ul>
+                                <li>Rutinas nocturnas</li>
+                                <li>Dormitorios y espacios de descanso</li>
+                                <li>Lectura o meditación</li>
+                                <li>Baños relajantes y momentos de autocuidado</li>
+                                <li>Crear una atmósfera cálida y tranquila al final del día</li>
+                            </ul>
+                            <h3>Modo de uso</h3>
+                            <p>Agregar la cantidad recomendada por el fabricante de tu difusor o humidificador al agua del depósito y dejar que el aroma se disperse suavemente por el ambiente.</p>
+                            <p class="product-detail-closing">BIO PRANA VITAL · Aromas que acompañan tu ritual diario.</p>
+                        </div>
+
+                    </article>
+
+
+                    <!-- HUMIDIFICADOR DIFUSOR -->
+
+                    <article
+                        class="product-card reveal"
+                        data-category="aromaterapia"
+                        data-product-id="humidificador-blanco"
+                        data-product-name="Humidificador Difusor (Blanco)"
+                        data-product-image="assets/productos/card/humidificador-blanco.jpg"
+                        data-detail-images="assets/productos/humidificador-blanco.jpg"
+                        data-detail-alts="Humidificador difusor Bio Prana Vital"
+                    >
+
+                        <button type="button" class="product-image" data-action="details" aria-label="Ver detalle: Humidificador Difusor">
+                            <img
+                                src="assets/productos/card/humidificador-blanco.jpg"
+                                width="864"
+                                height="720"
+                                alt="Humidificador difusor Bio Prana Vital"
+                                loading="lazy"
+                            >
+                        </button>
+
+                        <div class="product-info">
+
+                            <span class="product-category">Difusión</span>
+
+                            <h3>Humidificador Difusor</h3>
+
+                            <p class="product-tagline">Aromatizá y transformá tu espacio</p>
+
+                            <p class="product-summary">Suave bruma para tus aceites esenciales. Disponible en dos terminaciones.</p>
+
+                            <div class="product-variants" role="group" aria-label="Terminación">
+                                <button type="button" class="variant-chip is-active" aria-pressed="true" data-variant-id="humidificador-blanco" data-variant-name="Humidificador Difusor (Blanco)" data-variant-image="assets/productos/card/humidificador-blanco.jpg" data-variant-full="assets/productos/humidificador-blanco.jpg"><span class="variant-swatch" style="--swatch: #f4f1ea"></span>Blanco</button>
+                                <button type="button" class="variant-chip" aria-pressed="false" data-variant-id="humidificador-madera" data-variant-name="Humidificador Difusor (Símil madera)" data-variant-image="assets/productos/card/humidificador-madera.jpg" data-variant-full="assets/productos/humidificador-madera.jpg"><span class="variant-swatch" style="--swatch: #b98a5a"></span>Símil madera</button>
+                            </div>
+
+                            <div class="product-meta">
+                                <span class="product-price">Consultar precio</span>
+                                <button type="button" class="product-more" data-action="details">Ver más</button>
+                            </div>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-detail" hidden>
+                            <p class="product-detail-kicker">Difusión</p>
+                            <h2 class="product-detail-title">Humidificador Difusor</h2>
+                            <p class="product-detail-tagline">Aromatizá y transformá tu espacio</p>
+                            <p>El Humidificador Difusor BIO PRANA VITAL está pensado para acompañar tus momentos de bienestar con una experiencia simple, cálida y sensorial.</p>
+                            <p>Gracias a su sistema de difusión, permite utilizar aceites esenciales o mezclas aromáticas compatibles, dispersando una suave bruma que ayuda a perfumar el ambiente y crear una atmósfera más agradable y envolvente.</p>
+                            <dl class="product-detail-facts">
+                                <div><dt>Terminaciones</dt><dd>Blanco · Símil madera</dd></div>
+                            </dl>
+                            <h3>Ideal para</h3>
+                            <ul>
+                                <li>Dormitorios y espacios de descanso</li>
+                                <li>Livings y ambientes del hogar</li>
+                                <li>Oficinas y home office</li>
+                                <li>Yoga, meditación y momentos de pausa</li>
+                                <li>Rutinas de lectura o relax</li>
+                                <li>Complementar los aceites aromáticos BIO PRANA VITAL</li>
+                            </ul>
+                            <h3>Modo de uso</h3>
+                            <p>Agregar agua al depósito respetando la capacidad indicada por el fabricante e incorporar la cantidad recomendada de aceite esencial o mezcla aromática compatible. Encender el equipo y seleccionar la función disponible de difusión e iluminación.</p>
+                            <p class="product-detail-closing">Transformá tu ambiente. Creá tu ritual.</p>
+                        </div>
+
+                    </article>
+
+
+                    <!-- DIFUSOR SPLASH SPRAY -->
+
+                    <article
+                        class="product-card reveal"
+                        data-category="aromaterapia"
+                        data-product-id="difusor-splash"
+                        data-product-name="Difusor Splash Spray"
+                        data-product-image="assets/productos/card/difusor-splash.jpg"
+                        data-detail-images="assets/productos/difusor-splash.jpg"
+                        data-detail-alts="Difusor Splash Spray Bio Prana Vital de citronella y lavanda"
+                    >
+
+                        <button type="button" class="product-image" data-action="details" aria-label="Ver detalle: Difusor Splash Spray">
+                            <img
+                                src="assets/productos/card/difusor-splash.jpg"
+                                width="576"
+                                height="720"
+                                alt="Difusor Splash Spray Bio Prana Vital de citronella y lavanda"
+                                loading="lazy"
+                            >
+                        </button>
+
+                        <div class="product-info">
+
+                            <span class="product-category">Spray ambiental</span>
+
+                            <h3>Difusor Splash Spray</h3>
+
+                            <p class="product-tagline">Citronella y lavanda</p>
+
+                            <p class="product-summary">Renová la energía del ambiente con una combinación herbal, fresca y relajante.</p>
+
+                            <div class="product-meta">
+                                <span class="product-price">Consultar precio</span>
+                                <button type="button" class="product-more" data-action="details">Ver más</button>
+                            </div>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-detail" hidden>
+                            <p class="product-detail-kicker">Spray ambiental</p>
+                            <h2 class="product-detail-title">Difusor Splash Spray</h2>
+                            <p class="product-detail-tagline">Citronella y lavanda</p>
+                            <p>Un difusor ambiental pensado para renovar la energía del entorno con una combinación herbal, fresca y relajante.</p>
+                            <p>DIFUSOR SPLASH SPRAY BIO PRANA VITAL combina la intensidad fresca de la citronella con la suavidad aromática de la lavanda para crear una atmósfera limpia, equilibrada y reconfortante.</p>
+                            <p>Su perfil aromático aporta una sensación de frescura inmediata, ideal para acompañar momentos de descanso, tardes tranquilas, espacios de lectura, dormitorios, livings o ambientes donde buscás una experiencia más armónica y agradable.</p>
+                            <p>Más que perfumar, transforma el ambiente en un pequeño ritual de bienestar cotidiano.</p>
+                            <dl class="product-detail-facts">
+                                <div><dt>Aroma</dt><dd>Citronella · Lavanda</dd></div>
+                            </dl>
+                            <p class="product-detail-closing">Frescura que armoniza. Calma que permanece.</p>
+                        </div>
+
+                    </article>
+
+
+                    <!-- BÁLSAMO BOTÁNICO -->
+
+                    <article
+                        class="product-card reveal"
+                        data-category="cuidado"
+                        data-product-id="balsamo"
+                        data-product-name="Bálsamo Botánico"
+                        data-product-image="assets/productos/card/balsamo.jpg"
+                        data-detail-images="assets/productos/balsamo.jpg"
+                        data-detail-alts="Bálsamo Botánico Bio Prana Vital con coco, rosa mosqueta y café"
+                    >
+
+                        <button type="button" class="product-image" data-action="details" aria-label="Ver detalle: Bálsamo Botánico">
+                            <img
+                                src="assets/productos/card/balsamo.jpg"
+                                width="1080"
+                                height="720"
+                                alt="Bálsamo Botánico Bio Prana Vital con coco, rosa mosqueta y café"
+                                loading="lazy"
+                            >
+                        </button>
+
+                        <div class="product-info">
+
+                            <span class="product-category">Cuidado de la piel</span>
+
+                            <h3>Bálsamo Botánico</h3>
+
+                            <p class="product-tagline">Coco · Rosa mosqueta · Café</p>
+
+                            <p class="product-summary">Un ritual cotidiano de cuidado para tu piel, en formato pote.</p>
+
+                            <div class="product-meta">
+                                <span class="product-price">Consultar precio</span>
+                                <button type="button" class="product-more" data-action="details">Ver más</button>
+                            </div>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-detail" hidden>
+                            <p class="product-detail-kicker">Cuidado de la piel</p>
+                            <h2 class="product-detail-title">Bálsamo Botánico</h2>
+                            <p class="product-detail-tagline">Coco · Rosa mosqueta · Café</p>
+                            <p>El Bálsamo Botánico BIO PRANA VITAL propone transformar el cuidado de la piel en un ritual cotidiano. Una propuesta de inspiración vegetal con coco, rosa mosqueta y café, pensada para acompañar momentos de cuidado personal con una identidad natural y sensorial.</p>
+                            <p>El coco aporta el carácter cálido de la línea, la rosa mosqueta suma su esencia botánica y el café completa una combinación distintiva. Tres ingredientes protagonistas que conectan con una experiencia de bienestar y atención a tu piel.</p>
+                            <p>Su presentación en pote permite integrar el bálsamo a tu espacio de cuidado personal y combinarlo con otros productos de la línea BIO PRANA VITAL.</p>
+                            <dl class="product-detail-facts">
+                                <div><dt>Ingredientes destacados</dt><dd>Coco · Rosa mosqueta · Café</dd></div>
+                            </dl>
+                            <p class="product-detail-closing">Un momento para vos. Un ritual para tu piel.</p>
+                        </div>
+
+                    </article>
+
+
+                    <!-- JABÓN BOTÁNICO -->
+
+                    <article
+                        class="product-card reveal"
+                        data-category="cuidado"
+                        data-product-id="jabon"
+                        data-product-name="Jabón Botánico"
+                        data-product-image="assets/productos/card/jabon.jpg"
+                        data-detail-images="assets/productos/jabon.jpg"
+                        data-detail-alts="Jabón Botánico Bio Prana Vital de avena, caléndula y lavanda"
+                    >
+
+                        <button type="button" class="product-image" data-action="details" aria-label="Ver detalle: Jabón Botánico">
+                            <img
+                                src="assets/productos/card/jabon.jpg"
+                                width="576"
+                                height="720"
+                                alt="Jabón Botánico Bio Prana Vital de avena, caléndula y lavanda"
+                                loading="lazy"
+                            >
+                        </button>
+
+                        <div class="product-info">
+
+                            <span class="product-category">Cuidado de la piel</span>
+
+                            <h3>Jabón Botánico</h3>
+
+                            <p class="product-tagline">Avena · Caléndula · Lavanda</p>
+
+                            <p class="product-summary">La limpieza diaria convertida en un pequeño ritual de cuidado y bienestar.</p>
+
+                            <div class="product-meta">
+                                <span class="product-price">Consultar precio</span>
+                                <button type="button" class="product-more" data-action="details">Ver más</button>
+                            </div>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-detail" hidden>
+                            <p class="product-detail-kicker">Cuidado de la piel</p>
+                            <h2 class="product-detail-title">Jabón Botánico</h2>
+                            <p class="product-detail-tagline">Avena · Caléndula · Lavanda</p>
+                            <p>El Jabón Botánico BIO PRANA VITAL transforma la limpieza cotidiana en un pequeño ritual de cuidado y bienestar. Su propuesta combina ingredientes de inspiración vegetal con una estética natural y sensorial, ideal para quienes buscan incorporar productos simples y agradables a su rutina diaria.</p>
+                            <p>La avena aporta una sensación suave y delicada sobre la piel, la caléndula refuerza el carácter botánico de la fórmula y la lavanda completa la experiencia con un aroma floral, limpio y reconfortante.</p>
+                            <p>Su textura artesanal, su aspecto natural y su perfil aromático lo convierten en una opción ideal para el baño diario, momentos de autocuidado o como parte de un ritual de relax.</p>
+                            <dl class="product-detail-facts">
+                                <div><dt>Perfil sensorial</dt><dd>Suave · Botánico · Floral · Reconfortante</dd></div>
+                                <div><dt>Ingredientes destacados</dt><dd>Avena · Caléndula · Lavanda</dd></div>
+                            </dl>
+                            <h3>Ideal para</h3>
+                            <ul>
+                                <li>Higiene y cuidado diario</li>
+                                <li>Rutinas de baño y autocuidado</li>
+                                <li>Momentos de relax</li>
+                                <li>Regalos y kits de bienestar</li>
+                                <li>Combinar con otros productos BIO PRANA VITAL</li>
+                            </ul>
+                            <h3>Modo de uso</h3>
+                            <p>Humedecer la piel y la barra de jabón, generar espuma entre las manos o directamente sobre la piel y masajear suavemente. Enjuagar con abundante agua.</p>
+                            <p class="product-detail-closing">No es solo limpieza. Es un ritual natural para tu piel.</p>
+                        </div>
+
+                    </article>
+
+
+                    <!-- SHAMPOO BOTÁNICO -->
+
+                    <article
+                        class="product-card reveal"
+                        data-category="cuidado"
+                        data-product-id="shampoo"
+                        data-product-name="Shampoo Botánico"
+                        data-product-image="assets/productos/card/shampoo.jpg"
+                        data-detail-images="assets/productos/shampoo.jpg"
+                        data-detail-alts="Shampoo Botánico Bio Prana Vital con coco, rosa mosqueta y café"
+                    >
+
+                        <button type="button" class="product-image" data-action="details" aria-label="Ver detalle: Shampoo Botánico">
+                            <img
+                                src="assets/productos/card/shampoo.jpg"
+                                width="576"
+                                height="720"
+                                alt="Shampoo Botánico Bio Prana Vital con coco, rosa mosqueta y café"
+                                loading="lazy"
+                            >
+                        </button>
+
+                        <div class="product-info">
+
+                            <span class="product-category">Cuidado capilar</span>
+
+                            <h3>Shampoo Botánico</h3>
+
+                            <p class="product-tagline">Coco · Rosa mosqueta · Café</p>
+
+                            <p class="product-summary">Nutrición, suavidad y vitalidad para tu cuidado capilar diario.</p>
+
+                            <div class="product-meta">
+                                <span class="product-price">Consultar precio</span>
+                                <button type="button" class="product-more" data-action="details">Ver más</button>
+                            </div>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-detail" hidden>
+                            <p class="product-detail-kicker">Cuidado capilar</p>
+                            <h2 class="product-detail-title">Shampoo Botánico</h2>
+                            <p class="product-detail-tagline">Coco · Rosa mosqueta · Café</p>
+                            <p>El Shampoo Botánico BIO PRANA VITAL combina coco, rosa mosqueta y café en una propuesta de cuidado diario inspirada en ingredientes de origen vegetal.</p>
+                            <p>El coco aporta una sensación cremosa y nutritiva, la rosa mosqueta suma un perfil botánico delicado y el café incorpora una identidad más intensa, energizante y distintiva dentro de la línea.</p>
+                            <dl class="product-detail-facts">
+                                <div><dt>Beneficios</dt><dd>Nutrición · Suavidad · Vitalidad</dd></div>
+                                <div><dt>Perfil aromático</dt><dd>Cremoso · Botánico · Cálido · Suavemente tostado</dd></div>
+                            </dl>
+                            <p class="product-detail-closing">Energía natural para tu ritual capilar.</p>
+                        </div>
+
+                    </article>
+
+
+                    <!-- CAFÉ BIO PRANA VITAL -->
+
+                    <article
+                        class="product-card reveal"
+                        data-category="bienestar"
+                        data-product-id="cafe"
+                        data-product-name="Café Bio Prana Vital"
+                        data-product-image="assets/productos/card/cafe.jpg"
+                        data-detail-images="assets/productos/cafe.jpg"
+                        data-detail-alts="Café Bio Prana Vital en paquete junto a una taza y granos de café"
+                    >
+
+                        <button type="button" class="product-image" data-action="details" aria-label="Ver detalle: Café Bio Prana Vital">
+                            <img
+                                src="assets/productos/card/cafe.jpg"
+                                width="576"
+                                height="720"
+                                alt="Café Bio Prana Vital en paquete junto a una taza y granos de café"
+                                loading="lazy"
+                            >
+                        </button>
+
+                        <div class="product-info">
+
+                            <span class="product-category">Enfoque natural</span>
+
+                            <h3>Café Bio Prana Vital</h3>
+
+                            <p class="product-tagline">Tu momento de enfoque</p>
+
+                            <p class="product-summary">Una pausa cotidiana convertida en ritual de energía, claridad y presencia.</p>
+
+                            <div class="product-meta">
+                                <span class="product-price">Consultar precio</span>
+                                <button type="button" class="product-more" data-action="details">Ver más</button>
+                            </div>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-detail" hidden>
+                            <p class="product-detail-kicker">Enfoque natural</p>
+                            <h2 class="product-detail-title">Café Bio Prana Vital</h2>
+                            <p class="product-detail-tagline">Tu momento de enfoque</p>
+                            <p>No es solo una taza de café. Es tu momento de enfoque total. Un café pensado para transformar una pausa cotidiana en un ritual de energía, claridad y presencia.</p>
+                            <p>CAFÉ BIO PRANA acompaña esos momentos en los que necesitás activar la mente, ordenar tus ideas y concentrarte en lo que importa.</p>
+                            <p>Su aroma intenso y su carácter envolvente lo convierten en un aliado para empezar el día, trabajar, estudiar, crear o simplemente regalarte unos minutos de conexión antes de seguir.</p>
+                            <p class="product-detail-closing">Una taza. Un ritual. Todo tu enfoque.</p>
+                        </div>
+
+                    </article>
+
+
+                    <!-- GEL ÍNTIMO FEMENINO -->
+
+                    <article
+                        class="product-card reveal"
+                        data-category="intimos"
+                        data-product-id="gel-intimo-femenino"
+                        data-product-name="Gel Íntimo Femenino"
+                        data-product-image="assets/productos/card/gel-intimo-femenino.jpg"
+                        data-detail-images="assets/productos/gel-intimo-femenino.jpg"
+                        data-detail-alts="Gel Íntimo Femenino Bio Prana Vital"
+                    >
+
+                        <button type="button" class="product-image" data-action="details" aria-label="Ver detalle: Gel Íntimo Femenino">
+                            <img
+                                src="assets/productos/card/gel-intimo-femenino.jpg"
+                                width="576"
+                                height="720"
+                                alt="Gel Íntimo Femenino Bio Prana Vital"
+                                loading="lazy"
+                            >
+                        </button>
+
+                        <div class="product-info">
+
+                            <span class="product-category">Íntimos</span>
+
+                            <h3>Gel Íntimo Femenino</h3>
+
+                            <p class="product-tagline">Más conexión, más sensaciones</p>
+
+                            <p class="product-summary">Una experiencia sensorial, delicada y envolvente para tus momentos de intimidad.</p>
+
+                            <div class="product-meta">
+                                <span class="product-price">Consultar precio</span>
+                                <button type="button" class="product-more" data-action="details">Ver más</button>
+                            </div>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-detail" hidden>
+                            <p class="product-detail-kicker">Íntimos</p>
+                            <h2 class="product-detail-title">Gel Íntimo Femenino</h2>
+                            <p class="product-detail-tagline">Más conexión, más sensaciones</p>
+                            <p>El Gel Íntimo Femenino BIO PRANA VITAL fue pensado para acompañar la intimidad desde una experiencia más sensorial, delicada y envolvente, poniendo en el centro el confort, la conexión y el disfrute del momento.</p>
+                            <p>Su textura suave y agradable se integra fácilmente al ritual íntimo, aportando una sensación de frescura, suavidad y bienestar que ayuda a crear una experiencia más cuidada, relajada y especial.</p>
+                            <p>Más que un producto de cuidado personal, propone transformar la intimidad en un momento de pausa, presencia y conexión con las propias sensaciones o con la pareja.</p>
+                            <dl class="product-detail-facts">
+                                <div><dt>Experiencia</dt><dd>Suave · Sensorial · Delicada · Envolvente</dd></div>
+                            </dl>
+                            <h3>Ideal para</h3>
+                            <ul>
+                                <li>Acompañar momentos de intimidad</li>
+                                <li>Sumar suavidad y confort a la experiencia</li>
+                                <li>Crear un ritual más sensorial y cuidado</li>
+                                <li>Incorporar al juego previo</li>
+                                <li>Potenciar la conexión y la presencia en pareja</li>
+                                <li>Disfrutar de un momento personal más consciente y especial</li>
+                            </ul>
+                            <h3>Modo de uso</h3>
+                            <p>Aplicar una pequeña cantidad sobre la zona íntima externa limpia y seca, respetando las indicaciones definitivas establecidas para la fórmula comercial.</p>
+                            <p class="product-detail-closing">Un ritual íntimo diseñado para realzar las sensaciones, el confort y la conexión con el momento.</p>
+                        </div>
+
+                    </article>
+
+
+                    <!-- GEL ÍNTIMO MASCULINO -->
+
+                    <article
+                        class="product-card reveal"
+                        data-category="intimos"
+                        data-product-id="gel-intimo-masculino"
+                        data-product-name="Gel Íntimo Masculino"
+                        data-product-image="assets/productos/card/gel-intimo-masculino.jpg"
+                        data-detail-images="assets/productos/gel-intimo-masculino.jpg"
+                        data-detail-alts="Gel Íntimo Masculino Bio Prana Vital"
+                    >
+
+                        <button type="button" class="product-image" data-action="details" aria-label="Ver detalle: Gel Íntimo Masculino">
+                            <img
+                                src="assets/productos/card/gel-intimo-masculino.jpg"
+                                width="576"
+                                height="720"
+                                alt="Gel Íntimo Masculino Bio Prana Vital"
+                                loading="lazy"
+                            >
+                        </button>
+
+                        <div class="product-info">
+
+                            <span class="product-category">Íntimos</span>
+
+                            <h3>Gel Íntimo Masculino</h3>
+
+                            <p class="product-tagline">Potenciá el momento</p>
+
+                            <p class="product-summary">Una experiencia cuidada, fresca y envolvente para elevar la intimidad.</p>
+
+                            <div class="product-meta">
+                                <span class="product-price">Consultar precio</span>
+                                <button type="button" class="product-more" data-action="details">Ver más</button>
+                            </div>
+
+                            <div class="product-cart-row">
+
+                                <div class="qty-stepper">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Restar cantidad">−</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Sumar cantidad">+</button>
+                                </div>
+
+                                <button type="button" class="product-button" data-action="add-to-cart">
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="product-detail" hidden>
+                            <p class="product-detail-kicker">Íntimos</p>
+                            <h2 class="product-detail-title">Gel Íntimo Masculino</h2>
+                            <p class="product-detail-tagline">Potenciá el momento</p>
+                            <p>El Gel Íntimo Masculino BIO PRANA VITAL fue pensado para acompañar los momentos de intimidad desde una experiencia más cuidada, sensorial y envolvente.</p>
+                            <p>Su textura ligera y agradable se integra fácilmente al momento íntimo, aportando una sensación de frescura, suavidad y confort que invita a disfrutar con mayor presencia, conexión y confianza.</p>
+                            <p>Más que un producto de cuidado personal, propone sumar un nuevo ritual a la intimidad: bajar el ritmo, conectar con las sensaciones y transformar un momento cotidiano en una experiencia más intensa y especial.</p>
+                            <dl class="product-detail-facts">
+                                <div><dt>Experiencia</dt><dd>Sensual · Suave · Fresca · Envolvente</dd></div>
+                            </dl>
+                            <h3>Ideal para</h3>
+                            <ul>
+                                <li>Incorporar a los momentos de intimidad</li>
+                                <li>Crear una experiencia más sensorial y cuidada</li>
+                                <li>Acompañar el juego previo y la conexión en pareja</li>
+                                <li>Sumar suavidad y confort al momento</li>
+                                <li>Convertir la intimidad en un ritual más consciente y especial</li>
+                            </ul>
+                            <h3>Modo de uso</h3>
+                            <p>Aplicar una pequeña cantidad sobre la zona íntima externa limpia y seca, respetando las indicaciones definitivas de uso establecidas para la fórmula comercial.</p>
+                            <p class="product-detail-closing">Una experiencia diseñada para potenciar el momento íntimo desde las sensaciones, el cuidado y la conexión.</p>
                         </div>
 
                     </article>
@@ -363,11 +1176,14 @@
 
         <section class="featured section" id="destacado">
 
+            <!-- Foto de fondo con velo verde y parallax en escritorio -->
+            <div class="featured-bg" aria-hidden="true"></div>
+
             <div class="container">
 
                 <div class="benefits-header reveal">
 
-                    <div class="section-heading section-heading--simple">
+                    <div class="section-heading">
 
                         <p class="eyebrow">
                             Dodecaedro Orgonita
@@ -380,15 +1196,29 @@
 
                     </div>
 
-                    <div class="benefits-nav-arrows">
+                    <div class="benefits-nav">
 
-                        <button type="button" class="benefits-arrow" id="benefitsPrev" aria-label="Beneficio anterior">
-                            <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
-                        </button>
+                        <div class="benefits-dots" role="tablist" aria-label="Seleccionar beneficio">
 
-                        <button type="button" class="benefits-arrow" id="benefitsNext" aria-label="Siguiente beneficio">
-                            <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
-                        </button>
+                            <button type="button" class="benefits-dot is-active" role="tab" aria-controls="benefit-panel-1" data-tab="1" aria-label="Equilibra la energía" aria-selected="true"></button>
+                            <button type="button" class="benefits-dot" role="tab" aria-controls="benefit-panel-2" data-tab="2" aria-label="Concentración y claridad" aria-selected="false"></button>
+                            <button type="button" class="benefits-dot" role="tab" aria-controls="benefit-panel-3" data-tab="3" aria-label="Salud y bienestar" aria-selected="false"></button>
+                            <button type="button" class="benefits-dot" role="tab" aria-controls="benefit-panel-4" data-tab="4" aria-label="Protección energética" aria-selected="false"></button>
+                            <button type="button" class="benefits-dot" role="tab" aria-controls="benefit-panel-5" data-tab="5" aria-label="Armonía integral" aria-selected="false"></button>
+
+                        </div>
+
+                        <div class="benefits-nav-arrows">
+
+                            <button type="button" class="benefits-arrow" id="benefitsPrev" aria-label="Beneficio anterior">
+                                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+                            </button>
+
+                            <button type="button" class="benefits-arrow" id="benefitsNext" aria-label="Siguiente beneficio">
+                                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+                            </button>
+
+                        </div>
 
                     </div>
 
@@ -397,146 +1227,164 @@
 
                 <div class="benefits-showcase reveal">
 
-                    <div class="benefits-showcase-image">
-                        <img
-                            id="benefitsImage"
-                            src="assets/beneficio-energia.jpg"
-                            alt="Dodecaedro Orgonita Bio Prana Vital junto a un lago, con una familia en el fondo"
-                        >
-                    </div>
-
 
                     <div class="benefits-panels">
 
                         <!-- PANEL 1 — EQUILIBRA LA ENERGÍA -->
 
-                        <div class="benefits-panel is-active" data-panel="1" data-image="assets/beneficio-energia.jpg" data-alt="Dodecaedro Orgonita Bio Prana Vital junto a un lago, con una familia en el fondo" role="tabpanel">
+                        <div class="benefits-panel is-active" id="benefit-panel-1" data-panel="1" role="tabpanel">
 
-                            <h3>Equilibrio y tecnología bioenergética con el Dodecaedro Orgonita</h3>
+                            <div class="benefits-panel-media" style="--img: url('/assets/beneficio-energia.jpg')">
+                                <img src="assets/beneficio-energia.jpg" alt="Dodecaedro Orgonita Bio Prana Vital junto a un lago, con una familia en el fondo" width="1100" height="1100">
+                            </div>
 
-                            <p>
-                                Equilibrá tu energía con el Dodecaedro Orgonita de Bio Prana
-                                Vital, un potente dispositivo de armonización ambiental que
-                                actúa como un bio-filtro permanente. Diseñado bajo los
-                                principios de la tecnología bioenergética, combina la ciencia
-                                de la transmutación del orgón con el poder expandido de la
-                                geometría sagrada para limpiar tu entorno y revitalizar tu
-                                biocampo.
-                            </p>
+                            <div class="benefits-panel-intro">
 
-                            <p class="benefits-subhead">Beneficios principales</p>
+                                <h3>Equilibrio y tecnología bioenergética con el Dodecaedro Orgonita</h3>
 
-                            <ul class="benefits-panel-list">
-                                <li><strong>Filtro contra el electrosmog:</strong> absorbe y transmuta la radiación caótica (DOR) emitida por antenas, redes Wi-Fi, computadoras y celulares.</li>
-                                <li><strong>Energía vital continua:</strong> devuelve al ambiente energía ordenada y armónica (POR), elevando el prana o fuerza vital del espacio.</li>
-                                <li><strong>Geometría de conexión:</strong> su forma de dodecaedro (12 caras) representa el éter en la geometría sagrada, emitiendo una frecuencia multidireccional que promueve la paz mental y la meditación profunda.</li>
-                            </ul>
+                                <p>
+                                    Equilibrá tu energía con el Dodecaedro Orgonita de Bio Prana
+                                    Vital, un potente dispositivo de armonización ambiental que
+                                    actúa como un bio-filtro permanente. Diseñado bajo los
+                                    principios de la tecnología bioenergética, combina la ciencia
+                                    de la transmutación del orgón con el poder expandido de la
+                                    geometría sagrada para limpiar tu entorno y revitalizar tu
+                                    biocampo.
+                                </p>
+
+                            </div>
 
                         </div>
 
 
                         <!-- PANEL 2 — CONCENTRACIÓN Y CLARIDAD -->
 
-                        <div class="benefits-panel" data-panel="2" data-image="assets/beneficio-concentracion.jpg" data-alt="Dodecaedro Orgonita Bio Prana Vital junto a un lago de montaña, gráfica de concentración y claridad mental" role="tabpanel" hidden>
+                        <div class="benefits-panel" id="benefit-panel-2" data-panel="2" role="tabpanel" inert>
 
-                            <h3>Concentración y claridad mental con el Dodecaedro Orgonita</h3>
+                            <div class="benefits-panel-media" style="--img: url('/assets/beneficio-concentracion.jpg')">
+                                <img src="assets/beneficio-concentracion.jpg" alt="Dodecaedro Orgonita Bio Prana Vital junto a un lago de montaña, gráfica de concentración y claridad mental" width="1100" height="1100" loading="lazy">
+                            </div>
 
-                            <p>
-                                Maximizá tu productividad y despejá tu mente con el Dodecaedro
-                                Orgonita de Bio Prana Vital. Este dispositivo de tecnología
-                                bioenergética actúa como un escudo protector para tu cerebro,
-                                eliminando las distracciones invisibles del entorno y creando
-                                la atmósfera perfecta para el enfoque profundo, el estudio y
-                                el trabajo creativo.
-                            </p>
+                            <div class="benefits-panel-intro">
 
-                            <p class="benefits-subhead">Beneficios para tu rendimiento mental</p>
+                                <h3>Concentración y claridad mental con el Dodecaedro Orgonita</h3>
 
-                            <ul class="benefits-panel-list">
-                                <li><strong>Elimina la neblina mental:</strong> absorbe el "ruido de fondo" de la radiación electromagnética (Wi-Fi, pantallas, celulares) que satura tu sistema nervioso, previniendo dolores de cabeza y el agotamiento prematuro.</li>
-                                <li><strong>Potencia el enfoque profundo:</strong> al emitir energía ordenada y armónica (POR), ayuda a tu cerebro a sintonizar más rápido los estados de concentración y relajación consciente (ondas alfa).</li>
-                                <li><strong>Pensamiento lúcido y creativo:</strong> su geometría sagrada de 12 caras emite una frecuencia multidireccional que disipa el estrés ambiental, promoviendo ideas más claras y organizadas.</li>
-                            </ul>
+                                <p>
+                                    Maximizá tu productividad y despejá tu mente con el Dodecaedro
+                                    Orgonita de Bio Prana Vital. Este dispositivo de tecnología
+                                    bioenergética acompaña tu concentración, ayudando a reducir
+                                    las distracciones invisibles del entorno y creando
+                                    la atmósfera ideal para el enfoque profundo, el estudio y
+                                    el trabajo creativo.
+                                </p>
+
+                                <div class="benefits-panel-extra">
+                                    <p class="benefits-subhead">Ideal para colocar en</p>
+                                    <ul class="benefits-panel-list benefits-panel-list--plain">
+                                        <li>Escritorios de trabajo y oficinas.</li>
+                                        <li>Mesas de estudio y lecturas.</li>
+                                        <li>Espacios de meditación y mindfulness.</li>
+                                    </ul>
+                                </div>
+
+                            </div>
 
                         </div>
 
 
                         <!-- PANEL 3 — SALUD Y BIENESTAR -->
 
-                        <div class="benefits-panel" data-panel="3" data-image="assets/beneficio-salud.jpg" data-alt="Dodecaedro Orgonita Bio Prana Vital junto a un lago, gráfica de bienestar y salud integral" role="tabpanel" hidden>
+                        <div class="benefits-panel" id="benefit-panel-3" data-panel="3" role="tabpanel" inert>
 
-                            <h3>Bienestar y salud integral con el Dodecaedro Orgonita</h3>
+                            <div class="benefits-panel-media" style="--img: url('/assets/beneficio-salud.jpg')">
+                                <img src="assets/beneficio-salud.jpg" alt="Dodecaedro Orgonita Bio Prana Vital junto a un lago, gráfica de bienestar y salud integral" width="1100" height="1100" loading="lazy">
+                            </div>
 
-                            <p>
-                                Transformá tu hogar en un verdadero santuario de sanación con
-                                el Dodecaedro Orgonita de Bio Prana Vital. Diseñado con
-                                tecnología bioenergética avanzada, este dispositivo actúa como
-                                un escudo protector para tu salud biológica, ayudando a tu
-                                organismo a recuperar su equilibrio natural frente a las
-                                agresiones y el estrés del mundo moderno.
-                            </p>
+                            <div class="benefits-panel-intro">
 
-                            <p class="benefits-subhead">Beneficios para tu salud física y emocional</p>
+                                <h3>Bienestar y salud integral con el Dodecaedro Orgonita</h3>
 
-                            <ul class="benefits-panel-list">
-                                <li><strong>Refuerza tu sistema inmunológico:</strong> al neutralizar la contaminación electromagnética diaria, disminuye el estrés oxidativo a nivel celular. Tu cuerpo deja de gastar energía defendiéndose del entorno y se enfoca en mantenerse fuerte.</li>
-                                <li><strong>Sueño profundo y reparador:</strong> equilibra el sistema nervioso y reduce los niveles de cortisol, permitiéndote conciliar un descanso de alta calidad donde tu cuerpo realmente se regenera.</li>
-                                <li><strong>Alivio de tensiones y fatiga:</strong> ayuda a disipar de forma natural los dolores de cabeza tensionales, la pesadez corporal y el cansancio crónico causados por la energía estancada en tus espacios.</li>
-                                <li><strong>Armonía y paz emocional:</strong> la geometría sagrada de 12 caras disipa las atmósferas cargadas de ansiedad, discusiones o desánimo, irradiando una vibración constante de estabilidad y bienestar.</li>
-                            </ul>
+                                <p>
+                                    Transformá tu hogar en un verdadero santuario de sanación con
+                                    el Dodecaedro Orgonita de Bio Prana Vital. Diseñado con
+                                    tecnología bioenergética avanzada, este dispositivo acompaña
+                                    tu bienestar diario, ayudando a tu organismo a encontrar
+                                    su equilibrio natural frente a las
+                                    agresiones y el estrés del mundo moderno.
+                                </p>
+
+                                <div class="benefits-panel-extra">
+                                    <p class="benefits-subhead">Ideal para colocar en</p>
+                                    <ul class="benefits-panel-list benefits-panel-list--plain">
+                                        <li><strong>Mesa de noche:</strong> para acompañar tu descanso y la calidad del sueño.</li>
+                                        <li><strong>Espacios familiares:</strong> salas de estar o comedores donde se busca mantener la armonía.</li>
+                                        <li><strong>Espacios terapéuticos:</strong> consultorios, centros de yoga, meditación o sanación holística.</li>
+                                    </ul>
+                                </div>
+
+                            </div>
 
                         </div>
 
 
                         <!-- PANEL 4 — PROTECCIÓN ENERGÉTICA -->
 
-                        <div class="benefits-panel" data-panel="4" data-image="assets/beneficio-proteccion.jpg" data-alt="Dodecaedro Orgonita Bio Prana Vital en tonos rojos, gráfica de protección energética avanzada" role="tabpanel" hidden>
+                        <div class="benefits-panel" id="benefit-panel-4" data-panel="4" role="tabpanel" inert>
 
-                            <h3>Protección energética avanzada con el Dodecaedro Orgonita</h3>
+                            <div class="benefits-panel-media" style="--img: url('/assets/beneficio-proteccion.jpg')">
+                                <img src="assets/beneficio-proteccion.jpg" alt="Dodecaedro Orgonita Bio Prana Vital en tonos rojos, gráfica de protección energética avanzada" width="1100" height="1100" loading="lazy">
+                            </div>
 
-                            <p>
-                                Mantené tus espacios limpios de malas vibraciones y protegidos
-                                con el Dodecaedro Orgonita de Bio Prana Vital. Gracias a su
-                                avanzada tecnología bioenergética y al poder de la geometría
-                                sagrada, este dispositivo no solo bloquea la negatividad, sino
-                                que la transforma continuamente en armonía, paz y vitalidad
-                                pura (prana) para vos y tus seres queridos.
-                            </p>
+                            <div class="benefits-panel-intro">
 
-                            <p class="benefits-subhead">Beneficios de protección bioenergética</p>
+                                <h3>Protección energética avanzada con el Dodecaedro Orgonita</h3>
 
-                            <ul class="benefits-panel-list">
-                                <li><strong>Escudo transmutador activo:</strong> a diferencia de otros amuletos, la orgonita no acumula la energía negativa; su matriz interna absorbe la densidad del ambiente, la descompone y la devuelve purificada.</li>
-                                <li><strong>Geometría sagrada de resguardo:</strong> sus 12 caras perfectas representan el éter, creando una esfera de protección multidireccional que disuelve bloqueos ambientales, tensiones y vibraciones densas externas.</li>
-                                <li><strong>Eleva la frecuencia del entorno:</strong> al irradiar una vibración elevada y constante, neutraliza por completo las energías de baja frecuencia (como la hostilidad, la envidia o el estrés del día a día) al no dejarlas resonar en tu espacio.</li>
-                            </ul>
+                                <p>
+                                    Mantené tus espacios limpios de malas vibraciones y protegidos
+                                    con el Dodecaedro Orgonita de Bio Prana Vital. Gracias a su
+                                    avanzada tecnología bioenergética y al poder de la geometría
+                                    sagrada, este dispositivo no solo bloquea la negatividad, sino
+                                    que la transforma continuamente en armonía, paz y vitalidad
+                                    pura (prana) para vos y tus seres queridos.
+                                </p>
+
+                                <div class="benefits-panel-extra">
+                                    <p class="benefits-subhead">Ideal para colocar en</p>
+                                    <ul class="benefits-panel-list benefits-panel-list--plain">
+                                        <li><strong>Entrada del hogar o negocio:</strong> para filtrar las energías de quienes ingresan al lugar.</li>
+                                        <li><strong>Espacios comunes o de reunión:</strong> donde suelen ocurrir discusiones o acumularse tensiones.</li>
+                                        <li><strong>Áreas de meditación o altares:</strong> para mantener un canal limpio de interferencias psíquicas.</li>
+                                    </ul>
+                                </div>
+
+                            </div>
 
                         </div>
 
 
                         <!-- PANEL 5 — ARMONÍA INTEGRAL -->
 
-                        <div class="benefits-panel" data-panel="5" data-image="assets/beneficio-armonia.jpg" data-alt="Dos siluetas tomadas de la mano al atardecer, con la luna en el cielo" role="tabpanel" hidden>
+                        <div class="benefits-panel" id="benefit-panel-5" data-panel="5" role="tabpanel" inert>
 
-                            <h3>Armonía integral con el Dodecaedro Orgonita</h3>
+                            <div class="benefits-panel-media" style="--img: url('/assets/beneficio-armonia.jpg')">
+                                <img src="assets/beneficio-armonia.jpg" alt="Dos siluetas tomadas de la mano al atardecer, con la luna en el cielo" width="1100" height="1100" loading="lazy">
+                            </div>
 
-                            <p>
-                                Armonizá cualquier ámbito de tu vida con el Dodecaedro Orgonita
-                                de Bio Prana Vital, que actúa como un sintonizador de resonancia
-                                universal. Como todo lo que te rodea está compuesto de energía y
-                                vibración, este dispositivo equilibra tus espacios para reflejar
-                                ese orden en tu realidad física, mental y espiritual. Su
-                                capacidad de armonizar de forma integral se basa en estos tres
-                                planos:
-                            </p>
+                            <div class="benefits-panel-intro">
 
-                            <p class="benefits-subhead">Beneficios en cada plano</p>
+                                <h3>Armonía integral con el Dodecaedro Orgonita</h3>
 
-                            <ul class="benefits-panel-list">
-                                <li><strong>Plano físico (el entorno tangible):</strong> purifica la atmósfera del hogar, la oficina o locales comerciales. Al neutralizar la contaminación electromagnética y disipar la pesadez ambiental, crea espacios donde el cuerpo se siente ligero, los alimentos se conservan mejor, las plantas crecen con más fuerza y las mascotas se muestran más tranquilas.</li>
-                                <li><strong>Plano mental y emocional (las relaciones):</strong> al emitir una frecuencia ordenada (POR), calma el sistema nervioso colectivo de quienes habitan el espacio. Esto reduce la fricción en las relaciones familiares o laborales, promueve una comunicación más fluida y empática, y disipa los estados de ansiedad compartida.</li>
-                                <li><strong>Plano espiritual y sutil (la conexión):</strong> el dodecaedro es el sólido platónico que representa la quintaesencia o el éter. Su geometría abre canales de conexión con frecuencias superiores, limpia el campo áurico de energías estancadas y crea un vórtice de paz ideal para la meditación y la expansión de la conciencia.</li>
-                            </ul>
+                                <p>
+                                    Armonizá cualquier ámbito de tu vida con el Dodecaedro Orgonita
+                                    de Bio Prana Vital, que actúa como un sintonizador de resonancia
+                                    universal. Como todo lo que te rodea está compuesto de energía y
+                                    vibración, este dispositivo equilibra tus espacios para reflejar
+                                    ese orden en tu realidad física, mental y espiritual. Su
+                                    capacidad de armonizar de forma integral se basa en estos tres
+                                    planos:
+                                </p>
+
+                            </div>
 
                         </div>
 
@@ -545,47 +1393,10 @@
                 </div>
 
 
-                <div class="benefits-extra reveal" hidden>
-
-                    <div class="benefits-extra-item" data-extra="2" hidden>
-                        <p class="benefits-subhead">Ideal para colocar en</p>
-                        <ul class="benefits-panel-list benefits-panel-list--plain">
-                            <li>Escritorios de trabajo y oficinas.</li>
-                            <li>Mesas de estudio y lecturas.</li>
-                            <li>Espacios de meditación y mindfulness.</li>
-                        </ul>
-                    </div>
-
-                    <div class="benefits-extra-item" data-extra="3" hidden>
-                        <p class="benefits-subhead">Ideal para colocar en</p>
-                        <ul class="benefits-panel-list benefits-panel-list--plain">
-                            <li><strong>Mesa de noche:</strong> para maximizar la regeneración celular y la calidad del sueño.</li>
-                            <li><strong>Espacios familiares:</strong> salas de estar o comedores donde se busca mantener la armonía.</li>
-                            <li><strong>Espacios terapéuticos:</strong> consultorios, centros de yoga, meditación o sanación holística.</li>
-                        </ul>
-                    </div>
-
-                    <div class="benefits-extra-item" data-extra="4" hidden>
-                        <p class="benefits-subhead">Ideal para colocar en</p>
-                        <ul class="benefits-panel-list benefits-panel-list--plain">
-                            <li><strong>Entrada del hogar o negocio:</strong> para filtrar las energías de quienes ingresan al lugar.</li>
-                            <li><strong>Espacios comunes o de reunión:</strong> donde suelen ocurrir discusiones o acumularse tensiones.</li>
-                            <li><strong>Áreas de meditación o altares:</strong> para mantener un canal limpio de interferencias psíquicas.</li>
-                        </ul>
-                    </div>
-
-                </div>
-
-
-                <div class="benefits-dots reveal" role="tablist" aria-label="Seleccionar beneficio">
-
-                    <button type="button" class="benefits-dot is-active" data-tab="1" aria-label="Equilibra la energía" aria-selected="true"></button>
-                    <button type="button" class="benefits-dot" data-tab="2" aria-label="Concentración y claridad" aria-selected="false"></button>
-                    <button type="button" class="benefits-dot" data-tab="3" aria-label="Salud y bienestar" aria-selected="false"></button>
-                    <button type="button" class="benefits-dot" data-tab="4" aria-label="Protección energética" aria-selected="false"></button>
-                    <button type="button" class="benefits-dot" data-tab="5" aria-label="Armonía integral" aria-selected="false"></button>
-
-                </div>
+                <p class="benefits-disclaimer">
+                    Los productos de Bio Prana Vital acompañan tu bienestar y no
+                    reemplazan la consulta ni el tratamiento médico.
+                </p>
 
             </div>
 
@@ -597,6 +1408,8 @@
         <section class="about-brief" id="historia">
 
             <div class="container about-brief-inner reveal">
+
+                <img src="assets/logo.png" alt="" class="about-logo" width="400" height="195" loading="lazy">
 
                 <p class="eyebrow">
                     Nuestra historia
@@ -624,22 +1437,21 @@
 
             <div class="footer-brand">
 
-                <img src="assets/logo-reversed.png" alt="Bio Prana Vital" class="footer-logo-img">
+                <img src="assets/logo-reversed.png" alt="Bio Prana Vital" class="footer-logo-img" width="400" height="195" loading="lazy">
 
             </div>
 
             <nav class="footer-nav">
                 <a href="#inicio">Inicio</a>
                 <a href="#productos">Productos</a>
-                <a href="#" class="whatsapp-link">WhatsApp</a>
+                <a href="#destacado">Beneficios</a>
+                <a href="#historia">Nosotros</a>
+                <a href="https://wa.me/5492804829591?text=%C2%A1Hola%20Bio%20Prana%20Vital!%20Quiero%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener">WhatsApp</a>
             </nav>
 
             <small>
                 © <span id="year"></span>
                 Bio Prana Vital
-                <span class="footer-credit">
-                    · Fotos: Unsplash
-                </span>
             </small>
 
         </div>
@@ -647,17 +1459,46 @@
     </footer>
 
 
+    <!-- DETALLE DE PRODUCTO -->
+
+    <dialog class="product-modal" id="productModal" aria-labelledby="productModalTitle">
+
+        <button type="button" class="product-modal-close" id="productModalClose" aria-label="Cerrar detalle">
+            ×
+        </button>
+
+        <div class="product-modal-media" id="productModalMedia"></div>
+
+        <div class="product-modal-content">
+
+            <div class="product-modal-body" id="productModalBody"></div>
+
+            <div class="product-modal-actions">
+
+                <span class="product-price">Consultar precio</span>
+
+                <button type="button" class="btn btn-primary" id="productModalAdd">
+                    Agregar al carrito
+                </button>
+
+            </div>
+
+        </div>
+
+    </dialog>
+
+
     <!-- CARRITO -->
 
     <div class="cart-overlay" id="cartOverlay"></div>
 
-    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" inert>
 
         <div class="cart-drawer-header">
 
-            <h2>Tu carrito</h2>
+            <h2 id="cartTitle">Tu carrito</h2>
 
-            <button class="cart-close" id="cartClose" aria-label="Cerrar carrito">
+            <button type="button" class="cart-close" id="cartClose" aria-label="Cerrar carrito">
                 ×
             </button>
 
@@ -675,11 +1516,11 @@
                 Los precios se coordinan por WhatsApp según disponibilidad.
             </p>
 
-            <button class="btn btn-primary cart-checkout" id="cartCheckout" disabled>
+            <button type="button" class="btn btn-primary cart-checkout" id="cartCheckout" disabled>
                 Finalizar pedido por WhatsApp
             </button>
 
-            <button class="cart-clear" id="cartClear">
+            <button type="button" class="cart-clear" id="cartClear">
                 Vaciar carrito
             </button>
 
@@ -690,7 +1531,7 @@
 
     <!-- BOTÓN FLOTANTE DE WHATSAPP -->
 
-    <a href="#" class="whatsapp-float whatsapp-link" aria-label="Escribinos por WhatsApp">
+    <a href="https://wa.me/5492804829591?text=%C2%A1Hola%20Bio%20Prana%20Vital!%20Quiero%20m%C3%A1s%20informaci%C3%B3n." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
         <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10 9 9.5 7.7 9.3 7.2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/>
             <path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"/>
@@ -700,10 +1541,10 @@
 
     <!-- TOASTS -->
 
-    <div class="toast-stack" id="toastStack"></div>
+    <div class="toast-stack" id="toastStack" aria-live="polite"></div>
 
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=20261008c"></script>
 
 </body>
 </html>
